@@ -1,13 +1,13 @@
 package config
 
 type MongoNotify struct {
-	Host       string `env:"NOTIFY_MONGO_HOST" envDefault:"localhost"`
-	Port       string `env:"NOTIFY_MONGO_PORT" envDefault:"27017"`
-	Username   string `env:"NOTIFY_MONGO_USERNAME" envDefault:""`
-	Password   string `env:"NOTIFY_MONGO_PASSWORD" envDefault:""`
-	Database   string `env:"NOTIFY_MONGO_DATABASE" envDefault:"empty"`
-	Collection string `env:"NOTIFY_MONGO_COLLECTION" envDefault:"empties"`
-	Query      string `env:"NOTIFY_MONGO_QUERY" envDefault:""`
+	Host       string `env:"MONGO_NOTIFY_HOST" envDefault:"localhost"`
+	Port       string `env:"MONGO_NOTIFY_PORT" envDefault:"27017"`
+	Username   string `env:"MONGO_NOTIFY_USERNAME" envDefault:""`
+	Password   string `env:"MONGO_NOTIFY_PASSWORD" envDefault:""`
+	Database   string `env:"MONGO_NOTIFY_DATABASE" envDefault:"empty"`
+	Collection string `env:"MONGO_NOTIFY_COLLECTION" envDefault:"empties"`
+	Query      string `env:"MONGO_NOTIFY_QUERY" envDefault:""`
 }
 
 type MailGoogle struct {
