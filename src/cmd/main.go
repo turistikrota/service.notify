@@ -46,7 +46,7 @@ func main() {
 		Validator:   valid,
 	})
 	tknSrv := token.New(token.Config{
-		Expiration: config.TokenSrv.Expiration,
+		Expiration:     config.TokenSrv.Expiration,
 		PublicKeyFile:  config.RSA.PublicKeyFile,
 		PrivateKeyFile: config.RSA.PrivateKeyFile,
 	})
@@ -81,7 +81,9 @@ func loadNotifyMongo(config config.App) *mongo.DB {
 	fmt.Printf("Mongo URI: %s", uri)
 	d, err := mongo.New(uri, config.DB.MongoNotify.Database)
 	if err != nil {
+		fmt.Printf("Error loading mongo: %s", err.Error())
 		panic(err)
 	}
+	fmt.Printf("Mongo loaded: %s", uri)
 	return d
 }
