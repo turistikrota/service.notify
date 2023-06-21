@@ -3,8 +3,9 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Bekleme Listesi Kaydınız</title>
+    <title>Doğrulama Kodunuz</title>
     <style>
+      /* CSS Reset */
       body,
       div,
       p,
@@ -20,6 +21,8 @@
         vertical-align: baseline;
         line-height: 1.5;
       }
+
+      /* Responsive Styles */
       @media only screen and (max-width: 600px) {
         .container {
           width: 100% !important;
@@ -51,31 +54,27 @@
         </div>
         <p style="margin-top: 20px; margin-bottom: 20px">Merhaba,</p>
         <p>
-          Bekleme listemize kaydolduğunuz için teşekkür ederiz. E-posta
-          adresiniz başarıyla listemize eklendi.
+          Hesabınızı doğrulamak için aşağıdaki 4 haneli doğrulama kodunu
+          kullanabilirsiniz:
         </p>
-        <p>
-          Web sitemiz beta aşamasına girdiğinde size bu e-posta adresinden
-          bildirim yapacağız.
-        </p>
-        <a
-          href="https://turistikrota.com/tr/cok-yakinda/cikis?code={{ .Token }}"
+        <h3
           style="
-            display: inline-block;
-            margin-top: 20px;
-            padding: 10px 20px;
-            background-color: red;
+            text-align: center;
+            font-size: 32px;
+            margin: 20px 0;
+            padding: 10px;
+            background-color: #f8f8f8;
             border-radius: 5px;
-            color: #fff;
-            text-decoration: none;
+            letter-spacing: 10px;
           "
-          >Bekleme Listesinden Çık</a
         >
-        <p style="margin-top: 20px">
-          Eğer bağlantıya tıklayamıyorsanız, aşağıdaki adresi tarayıcınıza
-          yapıştırın:
+          1224
+        </h3>
+        <p>Bu kodu kullanarak hesabınızı doğrulayabilirsiniz.</p>
+        <p>
+          Eğer bu işlemi siz gerçekleştirmediyseniz, lütfen bizimle iletişime
+          geçiniz.
         </p>
-        <p>https://turistikrota.com/tr/cok-yakinda/cikis?code={{ .Token }}</p>
       </div>
     </div>
     <div
