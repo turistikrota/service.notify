@@ -3,11 +3,11 @@ package event_stream
 import (
 	"context"
 
-	"api.turistikrota.com/notify/src/app"
-	"api.turistikrota.com/notify/src/config"
-	"api.turistikrota.com/notify/src/delivery/event_stream/dto"
-	"github.com/turistikrota/service.shared/events"
 	"github.com/sirupsen/logrus"
+	"github.com/turistikrota/service.notify/src/app"
+	"github.com/turistikrota/service.notify/src/config"
+	"github.com/turistikrota/service.notify/src/delivery/event_stream/dto"
+	"github.com/turistikrota/service.shared/events"
 )
 
 type Server struct {

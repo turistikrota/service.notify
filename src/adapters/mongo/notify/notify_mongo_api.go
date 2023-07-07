@@ -3,10 +3,10 @@ package notify
 import (
 	"context"
 
-	"api.turistikrota.com/notify/src/adapters/mongo/notify/entity"
-	"api.turistikrota.com/notify/src/domain/notify"
-	shared_mongo "github.com/turistikrota/service.shared/db/mongo"
 	"github.com/mixarchitecture/i18np"
+	"github.com/turistikrota/service.notify/src/adapters/mongo/notify/entity"
+	"github.com/turistikrota/service.notify/src/domain/notify"
+	shared_mongo "github.com/turistikrota/service.shared/db/mongo"
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/bson/primitive"
 	"go.mongodb.org/mongo-driver/mongo"

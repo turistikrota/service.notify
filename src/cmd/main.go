@@ -4,10 +4,10 @@ import (
 	"context"
 	"fmt"
 
-	"api.turistikrota.com/notify/src/config"
-	"api.turistikrota.com/notify/src/delivery"
-	"api.turistikrota.com/notify/src/service"
 	"github.com/mixarchitecture/i18np"
+	"github.com/turistikrota/service.notify/src/config"
+	"github.com/turistikrota/service.notify/src/delivery"
+	"github.com/turistikrota/service.notify/src/service"
 	"github.com/turistikrota/service.shared/auth/session"
 	"github.com/turistikrota/service.shared/auth/token"
 	"github.com/turistikrota/service.shared/db/mongo"

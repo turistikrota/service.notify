@@ -1,10 +1,10 @@
 package adapters
 
 import (
-	"api.turistikrota.com/notify/src/adapters/mail"
-	"api.turistikrota.com/notify/src/adapters/mongo"
-	"api.turistikrota.com/notify/src/adapters/sms"
-	"api.turistikrota.com/notify/src/adapters/telegram"
+	"github.com/turistikrota/service.notify/src/adapters/mail"
+	"github.com/turistikrota/service.notify/src/adapters/mongo"
+	"github.com/turistikrota/service.notify/src/adapters/sms"
+	"github.com/turistikrota/service.notify/src/adapters/telegram"
 )
 
 var (

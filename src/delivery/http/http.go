@@ -4,8 +4,12 @@ import (
 	"context"
 	"time"
 
-	"api.turistikrota.com/notify/src/app"
-	"api.turistikrota.com/notify/src/config"
+	"github.com/gofiber/fiber/v2"
+	"github.com/gofiber/fiber/v2/middleware/cors"
+	"github.com/gofiber/fiber/v2/middleware/timeout"
+	"github.com/mixarchitecture/i18np"
+	"github.com/turistikrota/service.notify/src/app"
+	"github.com/turistikrota/service.notify/src/config"
 	"github.com/turistikrota/service.shared/auth/session"
 	"github.com/turistikrota/service.shared/auth/token"
 	"github.com/turistikrota/service.shared/server/http"
@@ -16,10 +20,6 @@ import (
 	"github.com/turistikrota/service.shared/server/http/auth/required_access"
 	"github.com/turistikrota/service.shared/server/http/parser"
 	"github.com/turistikrota/service.shared/validator"
-	"github.com/gofiber/fiber/v2"
-	"github.com/gofiber/fiber/v2/middleware/cors"
-	"github.com/gofiber/fiber/v2/middleware/timeout"
-	"github.com/mixarchitecture/i18np"
 )
 
 type Server struct {

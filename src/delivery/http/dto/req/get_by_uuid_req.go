@@ -1,6 +1,6 @@
 package req
 
-import "api.turistikrota.com/notify/src/app/query"
+import "github.com/turistikrota/service.notify/src/app/query"
 
 type GetByUUIDRequest struct {
 	UUID string `param:"uuid" validate:"required,object_id"`

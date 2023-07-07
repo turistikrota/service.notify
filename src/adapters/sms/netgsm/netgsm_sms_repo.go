@@ -1,9 +1,9 @@
 package netgsm
 
 import (
-	"api.turistikrota.com/notify/src/config"
-	"api.turistikrota.com/notify/src/domain/notify"
-	"api.turistikrota.com/notify/src/domain/sms"
+	"github.com/turistikrota/service.notify/src/config"
+	"github.com/turistikrota/service.notify/src/domain/notify"
+	"github.com/turistikrota/service.notify/src/domain/sms"
 )
 
 type repo struct {

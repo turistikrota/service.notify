@@ -1,6 +1,6 @@
 package mail
 
-import "api.turistikrota.com/notify/src/domain/notify"
+import "github.com/turistikrota/service.notify/src/domain/notify"
 
 type Data struct {
 	To       string      `json:"to" validate:"required,email" bson:"to"`

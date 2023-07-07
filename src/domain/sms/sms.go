@@ -1,6 +1,6 @@
 package sms
 
-import "api.turistikrota.com/notify/src/domain/notify"
+import "github.com/turistikrota/service.notify/src/domain/notify"
 
 type Data struct {
 	Phone string `json:"phone" validate:"required,phone" bson:"phone"`

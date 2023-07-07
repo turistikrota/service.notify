@@ -1,10 +1,10 @@
 package mail
 
 import (
-	"api.turistikrota.com/notify/src/adapters/mail/google"
-	"api.turistikrota.com/notify/src/config"
-	"api.turistikrota.com/notify/src/domain/mail"
-	"api.turistikrota.com/notify/src/domain/notify"
+	"github.com/turistikrota/service.notify/src/adapters/mail/google"
+	"github.com/turistikrota/service.notify/src/config"
+	"github.com/turistikrota/service.notify/src/domain/mail"
+	"github.com/turistikrota/service.notify/src/domain/notify"
 )
 
 type Mail interface {

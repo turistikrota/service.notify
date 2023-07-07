@@ -1,9 +1,9 @@
 package mail
 
 import (
-	"api.turistikrota.com/notify/src/domain/notify"
-	"github.com/turistikrota/service.shared/validator"
 	"github.com/mixarchitecture/i18np"
+	"github.com/turistikrota/service.notify/src/domain/notify"
+	"github.com/turistikrota/service.shared/validator"
 )
 
 type Factory struct {

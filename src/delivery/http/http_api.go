@@ -1,10 +1,10 @@
 package http
 
 import (
-	"api.turistikrota.com/notify/src/delivery/http/dto"
+	"github.com/gofiber/fiber/v2"
+	"github.com/turistikrota/service.notify/src/delivery/http/dto"
 	httpI18n "github.com/turistikrota/service.shared/server/http/i18n"
 	"github.com/turistikrota/service.shared/server/http/result"
-	"github.com/gofiber/fiber/v2"
 )
 
 func (h Server) GetByUUID(ctx *fiber.Ctx) error {

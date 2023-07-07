@@ -3,9 +3,9 @@ package query
 import (
 	"context"
 
-	"api.turistikrota.com/notify/src/domain/notify"
-	"github.com/turistikrota/service.shared/decorator"
 	"github.com/mixarchitecture/i18np"
+	"github.com/turistikrota/service.notify/src/domain/notify"
+	"github.com/turistikrota/service.shared/decorator"
 )
 
 type GetByUUIDQuery struct {

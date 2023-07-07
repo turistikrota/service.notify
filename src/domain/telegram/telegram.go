@@ -1,6 +1,6 @@
 package telegram
 
-import "api.turistikrota.com/notify/src/domain/notify"
+import "github.com/turistikrota/service.notify/src/domain/notify"
 
 type Data struct {
 	ChatID string `json:"chat_id" validate:"required,min=1,max=255" bson:"chat_id"`

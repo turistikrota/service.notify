@@ -1,9 +1,9 @@
 package telegram
 
 import (
-	"api.turistikrota.com/notify/src/config"
-	"api.turistikrota.com/notify/src/domain/notify"
-	"api.turistikrota.com/notify/src/domain/telegram"
+	"github.com/turistikrota/service.notify/src/config"
+	"github.com/turistikrota/service.notify/src/domain/notify"
+	"github.com/turistikrota/service.notify/src/domain/telegram"
 )
 
 type repo struct {

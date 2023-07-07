@@ -3,10 +3,10 @@ package google
 import (
 	"net/smtp"
 
-	"api.turistikrota.com/notify/src/config"
-	"api.turistikrota.com/notify/src/domain/mail"
-	"api.turistikrota.com/notify/src/domain/notify"
 	"github.com/sirupsen/logrus"
+	"github.com/turistikrota/service.notify/src/config"
+	"github.com/turistikrota/service.notify/src/domain/mail"
+	"github.com/turistikrota/service.notify/src/domain/notify"
 )
 
 type repo struct {
