@@ -2,9 +2,9 @@ package http
 
 import (
 	"github.com/gofiber/fiber/v2"
+	httpI18n "github.com/mixarchitecture/microp/server/http/i18n"
+	"github.com/mixarchitecture/microp/server/http/result"
 	"github.com/turistikrota/service.notify/src/delivery/http/dto"
-	httpI18n "github.com/turistikrota/service.shared/server/http/i18n"
-	"github.com/turistikrota/service.shared/server/http/result"
 )
 
 func (h Server) GetByUUID(ctx *fiber.Ctx) error {

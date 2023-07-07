@@ -2,8 +2,8 @@ package telegram
 
 import (
 	"github.com/mixarchitecture/i18np"
+	"github.com/mixarchitecture/microp/validator"
 	"github.com/turistikrota/service.notify/src/domain/notify"
-	"github.com/turistikrota/service.shared/validator"
 )
 
 type Factory struct {

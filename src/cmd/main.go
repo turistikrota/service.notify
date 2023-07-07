@@ -5,6 +5,10 @@ import (
 	"fmt"
 
 	"github.com/mixarchitecture/i18np"
+	"github.com/mixarchitecture/microp/env"
+	"github.com/mixarchitecture/microp/events/nats"
+	"github.com/mixarchitecture/microp/logs"
+	"github.com/mixarchitecture/microp/validator"
 	"github.com/turistikrota/service.notify/src/config"
 	"github.com/turistikrota/service.notify/src/delivery"
 	"github.com/turistikrota/service.notify/src/service"
@@ -12,10 +16,6 @@ import (
 	"github.com/turistikrota/service.shared/auth/token"
 	"github.com/turistikrota/service.shared/db/mongo"
 	"github.com/turistikrota/service.shared/db/redis"
-	"github.com/turistikrota/service.shared/env"
-	"github.com/turistikrota/service.shared/events/nats"
-	"github.com/turistikrota/service.shared/logs"
-	"github.com/turistikrota/service.shared/validator"
 )
 
 func main() {

@@ -1,6 +1,9 @@
 package service
 
 import (
+	"github.com/mixarchitecture/microp/decorator"
+	"github.com/mixarchitecture/microp/events"
+	"github.com/mixarchitecture/microp/validator"
 	"github.com/turistikrota/service.notify/src/adapters"
 	"github.com/turistikrota/service.notify/src/app"
 	"github.com/turistikrota/service.notify/src/app/command"
@@ -11,9 +14,6 @@ import (
 	"github.com/turistikrota/service.notify/src/domain/sms"
 	"github.com/turistikrota/service.notify/src/domain/telegram"
 	"github.com/turistikrota/service.shared/db/mongo"
-	"github.com/turistikrota/service.shared/decorator"
-	"github.com/turistikrota/service.shared/events"
-	"github.com/turistikrota/service.shared/validator"
 )
 
 type Config struct {

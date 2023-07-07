@@ -5,8 +5,8 @@ import (
 	"time"
 
 	"github.com/mixarchitecture/i18np"
+	"github.com/mixarchitecture/microp/decorator"
 	"github.com/turistikrota/service.notify/src/domain/notify"
-	"github.com/turistikrota/service.shared/decorator"
 )
 
 type GetAllByChannelQuery struct {
