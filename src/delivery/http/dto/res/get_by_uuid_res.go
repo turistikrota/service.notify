@@ -1,8 +1,8 @@
 package res
 
 import (
-	"api.turistikrota.com/notify/src/domain/notify"
-	"github.com/turistikrota/service.shared/formats"
+	"github.com/mixarchitecture/microp/formats"
+	"github.com/turistikrota/service.notify/src/domain/notify"
 )
 
 type DetailResponse struct {

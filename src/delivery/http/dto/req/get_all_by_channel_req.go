@@ -1,9 +1,9 @@
 package req
 
 import (
-	"api.turistikrota.com/notify/src/app/query"
-	"api.turistikrota.com/notify/src/domain/notify"
 	"github.com/mixarchitecture/i18np"
+	"github.com/turistikrota/service.notify/src/app/query"
+	"github.com/turistikrota/service.notify/src/domain/notify"
 )
 
 type GetAllByChannelRequest struct {

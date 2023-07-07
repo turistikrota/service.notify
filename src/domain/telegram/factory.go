@@ -1,9 +1,9 @@
 package telegram
 
 import (
-	"api.turistikrota.com/notify/src/domain/notify"
-	"github.com/turistikrota/service.shared/validator"
 	"github.com/mixarchitecture/i18np"
+	"github.com/mixarchitecture/microp/validator"
+	"github.com/turistikrota/service.notify/src/domain/notify"
 )
 
 type Factory struct {

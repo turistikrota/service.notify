@@ -1,8 +1,8 @@
 package app
 
 import (
-	"api.turistikrota.com/notify/src/app/command"
-	"api.turistikrota.com/notify/src/app/query"
+	"github.com/turistikrota/service.notify/src/app/command"
+	"github.com/turistikrota/service.notify/src/app/query"
 )
 
 type Application struct {

@@ -1,8 +1,8 @@
 package dto
 
 import (
-	"api.turistikrota.com/notify/src/app/command"
-	"api.turistikrota.com/notify/src/domain/sms"
+	"github.com/turistikrota/service.notify/src/app/command"
+	"github.com/turistikrota/service.notify/src/domain/sms"
 )
 
 type NotifySMS struct {

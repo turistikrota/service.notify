@@ -1,19 +1,19 @@
 package service
 
 import (
-	"api.turistikrota.com/notify/src/adapters"
-	"api.turistikrota.com/notify/src/app"
-	"api.turistikrota.com/notify/src/app/command"
-	"api.turistikrota.com/notify/src/app/query"
-	"api.turistikrota.com/notify/src/config"
-	"api.turistikrota.com/notify/src/domain/mail"
-	"api.turistikrota.com/notify/src/domain/notify"
-	"api.turistikrota.com/notify/src/domain/sms"
-	"api.turistikrota.com/notify/src/domain/telegram"
+	"github.com/mixarchitecture/microp/decorator"
+	"github.com/mixarchitecture/microp/events"
+	"github.com/mixarchitecture/microp/validator"
+	"github.com/turistikrota/service.notify/src/adapters"
+	"github.com/turistikrota/service.notify/src/app"
+	"github.com/turistikrota/service.notify/src/app/command"
+	"github.com/turistikrota/service.notify/src/app/query"
+	"github.com/turistikrota/service.notify/src/config"
+	"github.com/turistikrota/service.notify/src/domain/mail"
+	"github.com/turistikrota/service.notify/src/domain/notify"
+	"github.com/turistikrota/service.notify/src/domain/sms"
+	"github.com/turistikrota/service.notify/src/domain/telegram"
 	"github.com/turistikrota/service.shared/db/mongo"
-	"github.com/turistikrota/service.shared/decorator"
-	"github.com/turistikrota/service.shared/events"
-	"github.com/turistikrota/service.shared/validator"
 )
 
 type Config struct {

@@ -5,8 +5,8 @@ import (
 	"context"
 	"net/http"
 
-	"api.turistikrota.com/notify/src/domain/sms"
 	"github.com/mixarchitecture/i18np"
+	"github.com/turistikrota/service.notify/src/domain/sms"
 )
 
 func (r *repo) Send(ctx context.Context, config sms.SendConfig) *i18np.Error {

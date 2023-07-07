@@ -7,8 +7,8 @@ import (
 	"encoding/json"
 	"net/http"
 
-	"api.turistikrota.com/notify/src/domain/telegram"
 	"github.com/mixarchitecture/i18np"
+	"github.com/turistikrota/service.notify/src/domain/telegram"
 )
 
 func (r *repo) Send(ctx context.Context, config telegram.SendConfig) *i18np.Error {

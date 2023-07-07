@@ -1,8 +1,8 @@
 package mongo
 
 import (
-	notify_mongo "api.turistikrota.com/notify/src/adapters/mongo/notify"
-	"api.turistikrota.com/notify/src/domain/notify"
+	notify_mongo "github.com/turistikrota/service.notify/src/adapters/mongo/notify"
+	"github.com/turistikrota/service.notify/src/domain/notify"
 	"go.mongodb.org/mongo-driver/mongo"
 )
 

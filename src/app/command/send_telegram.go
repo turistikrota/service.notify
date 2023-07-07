@@ -3,11 +3,11 @@ package command
 import (
 	"context"
 
-	"api.turistikrota.com/notify/src/domain/notify"
-	"api.turistikrota.com/notify/src/domain/telegram"
-	"github.com/turistikrota/service.shared/chain"
-	"github.com/turistikrota/service.shared/decorator"
+	"github.com/mixarchitecture/chain"
 	"github.com/mixarchitecture/i18np"
+	"github.com/mixarchitecture/microp/decorator"
+	"github.com/turistikrota/service.notify/src/domain/notify"
+	"github.com/turistikrota/service.notify/src/domain/telegram"
 )
 
 type SendTelegramCommand struct {
@@ -53,9 +53,9 @@ func NewSendTelegramHandler(config SendTelegramHandlerConfig) SendTelegramHandle
 
 func (h sendTelegramHandler) Handle(ctx context.Context, command SendTelegramCommand) (*SendTelegramResult, *i18np.Error) {
 	m, err := h.telegramFactory.NewNotifyTelegram(command.Recipient, command.Data)
-	ch := chain.Make[chainConfig, SendTelegramResult]()
+	ch := chain.New[chainConfig, SendTelegramResult]()
 	ch.Use(h.validate, h.send, h.log, h.end)
-	return ch.StartWithErr(ctx, chainConfig{
+	return ch.RunErr(ctx, chainConfig{
 		Command:  command,
 		Telegram: m,
 	}, err)

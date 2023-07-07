@@ -8,8 +8,8 @@ import (
 	"net/smtp"
 	"os"
 
-	"api.turistikrota.com/notify/src/domain/mail"
 	"github.com/mixarchitecture/i18np"
+	"github.com/turistikrota/service.notify/src/domain/mail"
 )
 
 func (r *repo) Send(ctx context.Context, config mail.SendConfig) *i18np.Error {

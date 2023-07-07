@@ -1,8 +1,8 @@
 package req
 
 import (
-	"api.turistikrota.com/notify/src/app/query"
 	"github.com/mixarchitecture/i18np"
+	"github.com/turistikrota/service.notify/src/app/query"
 )
 
 type GetAllByRecipientRequest struct {

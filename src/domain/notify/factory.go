@@ -4,8 +4,8 @@ import (
 	"encoding/json"
 	"time"
 
-	"github.com/turistikrota/service.shared/validator"
 	"github.com/mixarchitecture/i18np"
+	"github.com/mixarchitecture/microp/validator"
 )
 
 type Factory struct {
