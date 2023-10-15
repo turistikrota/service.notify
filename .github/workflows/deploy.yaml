@@ -22,7 +22,6 @@ jobs:
           SECRET_NAME_1: ${{ secrets.SECRET_NAME_1 }}
           SECRET_NAME_2: ${{ secrets.SECRET_NAME_2 }}
           SECRET_NAME_3: ${{ secrets.SECRET_NAME_3 }}
-          SECRET_NAME_3: ${{ secrets.SECRET_NAME_3 }}
           APP_PORT: ${{ secrets.APP_PORT }}
           HOST_ALIAS: ${{ secrets.HOST_ALIAS }}
           REDIS_HOST_ALIAS: ${{ secrets.REDIS_HOST_ALIAS }}
