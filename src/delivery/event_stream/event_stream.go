@@ -40,4 +40,5 @@ func (s Server) Load() {
 	s.engine.Subscribe(s.Topics.Email, s.ListenSendNotifyEmail)
 	s.engine.Subscribe(s.Topics.SMS, s.ListenSendNotifySMS)
 	s.engine.Subscribe(s.Topics.Telegram, s.ListenSendNotifyTelegram)
+	s.engine.Subscribe(s.Topics.Push, s.ListenSendNotifyPush)
 }

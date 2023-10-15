@@ -4,6 +4,7 @@ type Dto interface {
 	NotifyMail() *NotifyMail
 	NotifySMS() *NotifySMS
 	NotifyTelegram() *NotifyTelegram
+	NotifyPush() *NotifyPush
 }
 
 type dto struct{}
@@ -22,4 +23,8 @@ func (d *dto) NotifySMS() *NotifySMS {
 
 func (d *dto) NotifyTelegram() *NotifyTelegram {
 	return &NotifyTelegram{}
+}
+
+func (d *dto) NotifyPush() *NotifyPush {
+	return &NotifyPush{}
 }

@@ -14,6 +14,7 @@ type Commands struct {
 	SendMail     command.SendMailHandler
 	SendSms      command.SendSmsHandler
 	SendTelegram command.SendTelegramHandler
+	SendPush     command.SendPushHandler
 }
 
 type Queries struct {

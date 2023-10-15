@@ -4,6 +4,7 @@ import (
 	"context"
 	"fmt"
 
+	firebase "firebase.google.com/go"
 	"github.com/mixarchitecture/i18np"
 	"github.com/mixarchitecture/microp/env"
 	"github.com/mixarchitecture/microp/events/nats"
@@ -16,6 +17,7 @@ import (
 	"github.com/turistikrota/service.shared/auth/token"
 	"github.com/turistikrota/service.shared/db/mongo"
 	"github.com/turistikrota/service.shared/db/redis"
+	"google.golang.org/api/option"
 )
 
 func main() {
@@ -39,11 +41,13 @@ func main() {
 		Password: config.Redis.Pw,
 		DB:       config.Redis.Db,
 	})
+	firebase := loadFirebase(config)
 	app := service.NewApplication(service.Config{
 		App:         config,
 		EventEngine: eventEngine,
 		Mongo:       notifyMongo,
 		Validator:   valid,
+		Firebase:    firebase,
 	})
 	tknSrv := token.New(token.Config{
 		Expiration:     config.TokenSrv.Expiration,
@@ -86,4 +90,13 @@ func loadNotifyMongo(config config.App) *mongo.DB {
 	}
 	fmt.Printf("Mongo loaded: %s", uri)
 	return d
+}
+
+func loadFirebase(config config.App) *firebase.App {
+	opt := option.WithCredentialsFile(config.Firebase.SecretFile)
+	app, err := firebase.NewApp(context.Background(), nil, opt)
+	if err != nil {
+		panic(fmt.Errorf("error initializing app:%v", err))
+	}
+	return app
 }

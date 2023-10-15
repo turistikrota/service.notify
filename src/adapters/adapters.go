@@ -3,6 +3,7 @@ package adapters
 import (
 	"github.com/turistikrota/service.notify/src/adapters/mail"
 	"github.com/turistikrota/service.notify/src/adapters/mongo"
+	"github.com/turistikrota/service.notify/src/adapters/push"
 	"github.com/turistikrota/service.notify/src/adapters/sms"
 	"github.com/turistikrota/service.notify/src/adapters/telegram"
 )
@@ -12,4 +13,5 @@ var (
 	Telegram = telegram.NewCreator()
 	SMS      = sms.New()
 	Mongo    = mongo.New()
+	Push     = push.New()
 )

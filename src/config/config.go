@@ -24,6 +24,10 @@ type RSA struct {
 	PublicKeyFile  string `env:"RSA_PUBLIC_KEY"`
 }
 
+type Firebase struct {
+	SecretFile string `env:"FIREBASE_SECRET_FILE"`
+}
+
 type Telegram struct {
 	Token string `env:"TELEGRAM_TOKEN"`
 }
@@ -71,6 +75,7 @@ type NotifyTopics struct {
 	Email      string `env:"STREAMING_TOPIC_NOTIFY_EMAIL"`
 	SMS        string `env:"STREAMING_TOPIC_NOTIFY_SMS"`
 	Telegram   string `env:"STREAMING_TOPIC_NOTIFY_TELEGRAM"`
+	Push       string `env:"STREAMING_TOPIC_NOTIFY_PUSH"`
 	BatchEmail string `env:"STREAMING_TOPIC_NOTIFY_BATCH_EMAIL"`
 	BatchSMS   string `env:"STREAMING_TOPIC_NOTIFY_BATCH_SMS"`
 }
@@ -107,4 +112,5 @@ type App struct {
 	TokenSrv    TokenSrv
 	Session     Session
 	RSA         RSA
+	Firebase    Firebase
 }
