@@ -7,12 +7,14 @@ import (
 
 type NotifyPush struct {
 	push.Notification
-	Token string `json:"token"`
+	DeviceUUID string `json:"device_uuid"`
+	UserUUID   string `json:"user_uuid"`
 }
 
 func (n *NotifyPush) ToCommand() command.SendPushCommand {
 	return command.SendPushCommand{
-		Token:        n.Token,
+		DeviceUUID:   n.DeviceUUID,
 		Notification: &n.Notification,
+		UserUUID:     n.UserUUID,
 	}
 }

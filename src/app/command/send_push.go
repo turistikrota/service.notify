@@ -7,11 +7,13 @@ import (
 	"github.com/mixarchitecture/microp/decorator"
 	"github.com/turistikrota/service.notify/src/domain/notify"
 	"github.com/turistikrota/service.notify/src/domain/push"
+	"github.com/turistikrota/service.shared/auth/session"
 )
 
 type SendPushCommand struct {
 	Notification *push.Notification
-	Token        string
+	DeviceUUID   string
+	UserUUID     string
 }
 
 type SendPushResult struct{}
@@ -21,6 +23,7 @@ type SendPushHandler decorator.CommandHandler[SendPushCommand, *SendPushResult]
 type sendPushHandler struct {
 	pushRepo      push.Repository
 	notifyRepo    notify.Repository
+	sessionSrv    session.Service
 	pushFactory   push.Factory
 	notifyFactory notify.Factory
 }
@@ -30,6 +33,7 @@ type SendPushHandlerConfig struct {
 	NotifyRepo    notify.Repository
 	PushFactory   push.Factory
 	NotifyFactory notify.Factory
+	SessionSrv    session.Service
 	CqrsBase      decorator.Base
 }
 
@@ -39,6 +43,7 @@ func NewSendPushHandler(config SendPushHandlerConfig) SendPushHandler {
 			pushRepo:      config.PushRepo,
 			notifyRepo:    config.NotifyRepo,
 			pushFactory:   config.PushFactory,
+			sessionSrv:    config.SessionSrv,
 			notifyFactory: config.NotifyFactory,
 		},
 		config.CqrsBase,
@@ -46,7 +51,11 @@ func NewSendPushHandler(config SendPushHandlerConfig) SendPushHandler {
 }
 
 func (h sendPushHandler) Handle(ctx context.Context, command SendPushCommand) (*SendPushResult, *i18np.Error) {
-	m, err := h.pushFactory.NewNotifyPush(command.Token, command.Notification)
+	token, err := h.sessionSrv.GetFcmToken(command.UserUUID, command.DeviceUUID)
+	if err != nil {
+		return nil, err
+	}
+	m, err := h.pushFactory.NewNotifyPush(token, command.Notification)
 	if err != nil {
 		return nil, err
 	}
