@@ -1,6 +1,7 @@
 package service
 
 import (
+	firebase "firebase.google.com/go"
 	"github.com/mixarchitecture/microp/decorator"
 	"github.com/mixarchitecture/microp/events"
 	"github.com/mixarchitecture/microp/validator"
@@ -11,6 +12,7 @@ import (
 	"github.com/turistikrota/service.notify/src/config"
 	"github.com/turistikrota/service.notify/src/domain/mail"
 	"github.com/turistikrota/service.notify/src/domain/notify"
+	"github.com/turistikrota/service.notify/src/domain/push"
 	"github.com/turistikrota/service.notify/src/domain/sms"
 	"github.com/turistikrota/service.notify/src/domain/telegram"
 	"github.com/turistikrota/service.shared/db/mongo"
@@ -21,6 +23,7 @@ type Config struct {
 	EventEngine events.Engine
 	Mongo       *mongo.DB
 	Validator   *validator.Validator
+	Firebase    *firebase.App
 }
 
 func NewApplication(c Config) app.Application {
@@ -35,6 +38,9 @@ func NewApplication(c Config) app.Application {
 
 	telegramFactory := telegram.NewFactory(c.Validator, notifyFactory)
 	telegramRepo := adapters.Telegram.New(telegramFactory, notifyFactory, c.App.Adapters.Telegram)
+
+	pushFactory := push.NewFactory(c.Validator, notifyFactory)
+	pushRepo := adapters.Push.NewPush(pushFactory, notifyFactory, c.Firebase)
 
 	base := decorator.NewBase()
 
@@ -60,6 +66,13 @@ func NewApplication(c Config) app.Application {
 				TelegramFactory: telegramFactory,
 				NotifyFactory:   notifyFactory,
 				CqrsBase:        base,
+			}),
+			SendPush: command.NewSendPushHandler(command.SendPushHandlerConfig{
+				NotifyRepo:    notifyRepo,
+				PushRepo:      pushRepo,
+				PushFactory:   pushFactory,
+				NotifyFactory: notifyFactory,
+				CqrsBase:      base,
 			}),
 		},
 		Queries: app.Queries{

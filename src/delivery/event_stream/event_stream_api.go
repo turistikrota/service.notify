@@ -30,3 +30,12 @@ func (s Server) ListenSendNotifyTelegram(data []byte) {
 	}
 	s.app.Commands.SendTelegram.Handle(s.ctx, d.ToCommand())
 }
+
+func (s Server) ListenSendNotifyPush(data []byte) {
+	d := s.dto.NotifyPush()
+	err := json.Unmarshal(data, &d)
+	if err != nil {
+		return
+	}
+	s.app.Commands.SendPush.Handle(s.ctx, d.ToCommand())
+}

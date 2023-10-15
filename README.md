@@ -14,6 +14,7 @@ docker network create --driver overlay --attachable turistikrota
 ```bash
 docker secret create jwt_private_key ./jwtRS256.key
 docker secret create jwt_public_key ./jwtRS256.key.pub
+docker secret create firebase_service_account ./firebase_service_account.json
 
 ```
 

@@ -19,4 +19,5 @@ const (
 	ChannelEmail    Channel = "email"
 	ChannelSMS      Channel = "sms"
 	ChannelTelegram Channel = "telegram"
+	ChannelPush     Channel = "push"
 )
