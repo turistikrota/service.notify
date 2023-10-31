@@ -27,5 +27,5 @@ docker build --build-arg GITHUB_USER=<USER_NAME> --build-arg GITHUB_TOKEN=<ACCES
 ## 4. run container
 
 ```bash
-docker service create --name notify-api-turistikrota-com --network turistikrota --secret jwt_private_key --secret jwt_public_key --env-file .env --publish 6017:6017 api.turistikrota.com/notify:latest
+docker service create --name notify-api-turistikrota-com --network turistikrota --secret jwt_private_key --secret jwt_public_key --secret firebase_service_account --env-file .env --publish 6017:6017 api.turistikrota.com/notify:latest
 ```
