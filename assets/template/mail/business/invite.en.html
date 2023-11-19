@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="tr">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Organizasyon Daveti</title>
+    <title>Business Invitation</title>
     <style>
       body,
       div,
@@ -53,15 +53,15 @@
             style="max-width: 200px"
           />
         </div>
-        <p style="margin-top: 20px; margin-bottom: 20px">Merhaba,</p>
+        <p style="margin-top: 20px; margin-bottom: 20px">Hello,</p>
         <p>
-          {{ .OwnerName }} adlı organizasyona bu organizasyonun yöneticileri tarafından davet edildiniz. Daveti kabul etmek istiyorsanız, aşağıdaki bağlantıdan organizasyona katılım sağlayabilirsiniz.
+            You have been invited to the business {{ .BusinessName }} by the administrators of this business. If you want to accept the invitation, you can join the business from the link below.
         </p>
         <p>
-          Eğer bir işlem yapmazsanız davet 24 saat içerisinde otomatik olarak iptal edilecektir.
+            If you do not take any action, the invitation will be automatically canceled within 24 hours.
         </p>
         <a
-          href="https://satici.turistikrota.com/davet/{{ .InviteUUID }}"
+          href="https://business.turistikrota.com/invite/{{ .InviteUUID }}"
           style="
             display: inline-block;
             margin-top: 20px;
@@ -71,20 +71,20 @@
             color: #fff;
             text-decoration: none;
           "
-          >Organizasyona Katıl</a
+          >Join the Business</a
         >
         <p style="margin-top: 20px">
-          Eğer bağlantıya tıklayamıyorsanız, aşağıdaki adresi tarayıcınıza
-          yapıştırın:
+          If you can't click the link, paste the following address into your
+          browser:
         </p>
-        <p>https://satici.turistikrota.com/davet/{{ .InviteUUID }}</p>
+        <p>https://business.turistikrota.com/invite/{{ .InviteUUID }}</p>
       </div>
     </div>
     <div
       class="footer"
       style="text-align: center; font-size: 12px; padding: 20px"
     >
-      <p>© 2023 Turistikrota. Tüm hakları saklıdır.</p>
+      <p>© 2023 Turistikrota. All Rights Reserved.</p>
     </div>
   </body>
 </html>
