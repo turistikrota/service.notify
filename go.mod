@@ -9,8 +9,9 @@ require (
 	github.com/mixarchitecture/i18np v0.0.0-20230822003812-2969b27e32d7
 	github.com/mixarchitecture/microp v0.0.1
 	github.com/sirupsen/logrus v1.9.3
-	github.com/turistikrota/service.shared v0.0.27-0.20231015124451-40d25d8fac07
+	github.com/turistikrota/service.shared v0.0.27-0.20231125173841-fa3f8a0bb62e
 	go.mongodb.org/mongo-driver v1.12.1
+	google.golang.org/api v0.114.0
 )
 
 require (
@@ -72,7 +73,6 @@ require (
 	golang.org/x/text v0.12.0 // indirect
 	golang.org/x/time v0.3.0 // indirect
 	golang.org/x/xerrors v0.0.0-20220907171357-04be3eba64a2 // indirect
-	google.golang.org/api v0.114.0 // indirect
 	google.golang.org/appengine v1.6.7 // indirect
 	google.golang.org/genproto v0.0.0-20230410155749-daa745c078e1 // indirect
 	google.golang.org/grpc v1.56.1 // indirect

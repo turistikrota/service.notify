@@ -150,8 +150,8 @@ github.com/stretchr/testify v1.8.0/go.mod h1:yNjHg4UonilssWZ8iaSj1OCr/vHnekPRkoO
 github.com/stretchr/testify v1.8.1/go.mod h1:w2LPCIKwWwSfY2zedu0+kehJoqGctiVI29o6fzry7u4=
 github.com/stretchr/testify v1.8.2/go.mod h1:w2LPCIKwWwSfY2zedu0+kehJoqGctiVI29o6fzry7u4=
 github.com/stretchr/testify v1.8.4 h1:CcVxjf3Q8PM0mHUKJCdn+eZZtm5yQwehR5yeSVQQcUk=
-github.com/turistikrota/service.shared v0.0.27-0.20231015124451-40d25d8fac07 h1:sOsPfu0z24poHgPMXu1ufL1jUCgF9kBHFcqBjcIji+Y=
-github.com/turistikrota/service.shared v0.0.27-0.20231015124451-40d25d8fac07/go.mod h1:+AKJTOLUCmCQcf7QiV03eEUX8YbiqNlgQa9AwhryYPg=
+github.com/turistikrota/service.shared v0.0.27-0.20231125173841-fa3f8a0bb62e h1:+tDf3jq0zcVdliCaX1ffjdddHjGWCm0EGqmM6Waod1c=
+github.com/turistikrota/service.shared v0.0.27-0.20231125173841-fa3f8a0bb62e/go.mod h1:+AKJTOLUCmCQcf7QiV03eEUX8YbiqNlgQa9AwhryYPg=
 github.com/valyala/bytebufferpool v1.0.0 h1:GqA5TC/0021Y/b9FG4Oi9Mr3q7XYx6KllzawFIhcdPw=
 github.com/valyala/bytebufferpool v1.0.0/go.mod h1:6bBcMArwyJ5K/AmCkWv1jt77kVWyCJ6HpOuEn7z0Csc=
 github.com/valyala/fasthttp v1.48.0 h1:oJWvHb9BIZToTQS3MuQ2R3bJZiNSa2KiNdeI8A+79Tc=
