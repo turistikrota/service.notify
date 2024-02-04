@@ -62,19 +62,46 @@ func (r *repo) AddMail(ctx context.Context, actor Actor, credential MailCredenti
 	return r.helper.UpdateOne(ctx, filter, update)
 }
 
-// AddSMS implements Repository.
-func (*repo) AddSMS(ctx context.Context, actor Actor, credential SMSCredential) *i18np.Error {
-	panic("unimplemented")
+func (r *repo) AddSMS(ctx context.Context, actor Actor, credential SMSCredential) *i18np.Error {
+	filter := bson.M{
+		actorField(actorFields.UUID): actor.UUID,
+		actorField(actorFields.Name): actor.Name,
+		actorField(actorFields.Type): actor.Type,
+	}
+	update := bson.M{
+		"$addToSet": bson.M{
+			fields.SMS: credential,
+		},
+		"$set": bson.M{
+			fields.UpdatedAt: time.Now(),
+		},
+	}
+	return r.helper.UpdateOne(ctx, filter, update)
 }
 
-// AddTelegram implements Repository.
-func (*repo) AddTelegram(ctx context.Context, actor Actor, credential TelegramCredential) *i18np.Error {
-	panic("unimplemented")
+func (r *repo) AddTelegram(ctx context.Context, actor Actor, credential TelegramCredential) *i18np.Error {
+	filter := bson.M{
+		actorField(actorFields.UUID): actor.UUID,
+		actorField(actorFields.Name): actor.Name,
+		actorField(actorFields.Type): actor.Type,
+	}
+	update := bson.M{
+		"$addToSet": bson.M{
+			fields.Telegram: credential,
+		},
+		"$set": bson.M{
+			fields.UpdatedAt: time.Now(),
+		},
+	}
+	return r.helper.UpdateOne(ctx, filter, update)
 }
 
-// Create implements Repository.
-func (*repo) Create(ctx context.Context, entity *Entity) *i18np.Error {
-	panic("unimplemented")
+func (r *repo) Create(ctx context.Context, e *Entity) *i18np.Error {
+	_, err := r.collection.InsertOne(ctx, e)
+	if err != nil {
+		return r.factory.Errors.Failed("create")
+	}
+	return nil
 }
 
 // Filter implements Repository.
