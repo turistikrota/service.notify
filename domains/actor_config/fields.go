@@ -77,3 +77,15 @@ func mailField(field string) string {
 func smsField(field string) string {
 	return fields.SMS + "." + field
 }
+
+func telegramFieldInArray(field string) string {
+	return fields.Telegram + ".$." + field
+}
+
+func mailFieldInArray(field string) string {
+	return fields.Mail + ".$." + field
+}
+
+func smsFieldInArray(field string) string {
+	return fields.SMS + ".$." + field
+}

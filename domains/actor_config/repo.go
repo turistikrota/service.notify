@@ -2,10 +2,12 @@ package actor_config
 
 import (
 	"context"
+	"time"
 
 	"github.com/cilloparch/cillop/i18np"
 	"github.com/cilloparch/cillop/types/list"
 	mongo2 "github.com/turistikrota/service.shared/db/mongo"
+	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/mongo"
 )
 
@@ -43,9 +45,21 @@ type repo struct {
 	helper     mongo2.Helper[*Entity, *Entity]
 }
 
-// AddMail implements Repository.
-func (*repo) AddMail(ctx context.Context, actor Actor, credential MailCredential) *i18np.Error {
-	panic("unimplemented")
+func (r *repo) AddMail(ctx context.Context, actor Actor, credential MailCredential) *i18np.Error {
+	filter := bson.M{
+		actorField(actorFields.UUID): actor.UUID,
+		actorField(actorFields.Name): actor.Name,
+		actorField(actorFields.Type): actor.Type,
+	}
+	update := bson.M{
+		"$addToSet": bson.M{
+			fields.Mail: credential,
+		},
+		"$set": bson.M{
+			fields.UpdatedAt: time.Now(),
+		},
+	}
+	return r.helper.UpdateOne(ctx, filter, update)
 }
 
 // AddSMS implements Repository.
