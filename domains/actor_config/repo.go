@@ -209,34 +209,113 @@ func (r *repo) GetByUserUUID(ctx context.Context, uuid string) (*Entity, *i18np.
 	return *e, nil
 }
 
-// RemoveMail implements Repository.
-func (*repo) RemoveMail(ctx context.Context, actor Actor, credentialName string) *i18np.Error {
-	panic("unimplemented")
+func (r *repo) RemoveMail(ctx context.Context, actor Actor, credentialName string) *i18np.Error {
+	filter := bson.M{
+		actorField(actorFields.UUID): actor.UUID,
+		actorField(actorFields.Name): actor.Name,
+		actorField(actorFields.Type): actor.Type,
+		mailField(mailFields.Name):   credentialName,
+	}
+	update := bson.M{
+		"$pull": bson.M{
+			fields.Mail: bson.M{
+				mailFields.Name: credentialName,
+			},
+		},
+		"$set": bson.M{
+			fields.UpdatedAt: time.Now(),
+		},
+	}
+	return r.helper.UpdateOne(ctx, filter, update)
 }
 
-// RemoveSMS implements Repository.
-func (*repo) RemoveSMS(ctx context.Context, actor Actor, credentialName string) *i18np.Error {
-	panic("unimplemented")
+func (r *repo) RemoveSMS(ctx context.Context, actor Actor, credentialName string) *i18np.Error {
+	filter := bson.M{
+		actorField(actorFields.UUID): actor.UUID,
+		actorField(actorFields.Name): actor.Name,
+		actorField(actorFields.Type): actor.Type,
+		smsField(smsFields.Name):     credentialName,
+	}
+	update := bson.M{
+		"$pull": bson.M{
+			fields.SMS: bson.M{
+				smsFields.Name: credentialName,
+			},
+		},
+		"$set": bson.M{
+			fields.UpdatedAt: time.Now(),
+		},
+	}
+	return r.helper.UpdateOne(ctx, filter, update)
 }
 
-// RemoveTelegram implements Repository.
-func (*repo) RemoveTelegram(ctx context.Context, actor Actor, credentialName string) *i18np.Error {
-	panic("unimplemented")
+func (r *repo) RemoveTelegram(ctx context.Context, actor Actor, credentialName string) *i18np.Error {
+	filter := bson.M{
+		actorField(actorFields.UUID):       actor.UUID,
+		actorField(actorFields.Name):       actor.Name,
+		actorField(actorFields.Type):       actor.Type,
+		telegramField(telegramFields.Name): credentialName,
+	}
+	update := bson.M{
+		"$pull": bson.M{
+			fields.Telegram: bson.M{
+				telegramFields.Name: credentialName,
+			},
+		},
+		"$set": bson.M{
+			fields.UpdatedAt: time.Now(),
+		},
+	}
+	return r.helper.UpdateOne(ctx, filter, update)
 }
 
-// UpdateMail implements Repository.
-func (*repo) UpdateMail(ctx context.Context, actor Actor, credential MailCredential) *i18np.Error {
-	panic("unimplemented")
+func (r *repo) UpdateMail(ctx context.Context, actor Actor, credential MailCredential) *i18np.Error {
+	filter := bson.M{
+		actorField(actorFields.UUID): actor.UUID,
+		actorField(actorFields.Name): actor.Name,
+		actorField(actorFields.Type): actor.Type,
+		mailField(mailFields.Name):   credential.Name,
+	}
+	update := bson.M{
+		"$set": bson.M{
+			mailFieldInArray(mailFields.Email): credential.Email,
+			fields.UpdatedAt:                   time.Now(),
+		},
+	}
+	return r.helper.UpdateOne(ctx, filter, update)
 }
 
-// UpdateSMS implements Repository.
-func (*repo) UpdateSMS(ctx context.Context, actor Actor, credential SMSCredential) *i18np.Error {
-	panic("unimplemented")
+func (r *repo) UpdateSMS(ctx context.Context, actor Actor, credential SMSCredential) *i18np.Error {
+	filter := bson.M{
+		actorField(actorFields.UUID): actor.UUID,
+		actorField(actorFields.Name): actor.Name,
+		actorField(actorFields.Type): actor.Type,
+		smsField(smsFields.Name):     credential.Name,
+	}
+	update := bson.M{
+		"$set": bson.M{
+			smsFieldInArray(smsFields.Phone):       credential.Phone,
+			smsFieldInArray(smsFields.CountryCode): credential.CountryCode,
+			fields.UpdatedAt:                       time.Now(),
+		},
+	}
+	return r.helper.UpdateOne(ctx, filter, update)
 }
 
-// UpdateTelegram implements Repository.
-func (*repo) UpdateTelegram(ctx context.Context, actor Actor, credential TelegramCredential) *i18np.Error {
-	panic("unimplemented")
+func (r *repo) UpdateTelegram(ctx context.Context, actor Actor, credential TelegramCredential) *i18np.Error {
+	filter := bson.M{
+		actorField(actorFields.UUID):       actor.UUID,
+		actorField(actorFields.Name):       actor.Name,
+		actorField(actorFields.Type):       actor.Type,
+		telegramField(telegramFields.Name): credential.Name,
+	}
+	update := bson.M{
+		"$set": bson.M{
+			telegramFieldInArray(telegramFields.ChatID): credential.ChatID,
+			fields.UpdatedAt: time.Now(),
+		},
+	}
+	return r.helper.UpdateOne(ctx, filter, update)
 }
 
 func NewRepo(collection *mongo.Collection, factory Factory) Repository {
