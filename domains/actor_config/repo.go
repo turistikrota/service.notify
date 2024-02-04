@@ -9,6 +9,7 @@ import (
 	mongo2 "github.com/turistikrota/service.shared/db/mongo"
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/mongo"
+	"go.mongodb.org/mongo-driver/mongo/options"
 )
 
 type WithActor struct {
@@ -104,9 +105,28 @@ func (r *repo) Create(ctx context.Context, e *Entity) *i18np.Error {
 	return nil
 }
 
-// Filter implements Repository.
-func (*repo) Filter(ctx context.Context, filter FilterEntity, listConfig list.Config) (*list.Result[*Entity], *i18np.Error) {
-	panic("unimplemented")
+func (r *repo) Filter(ctx context.Context, filter FilterEntity, listConfig list.Config) (*list.Result[*Entity], *i18np.Error) {
+	filters := r.filterToBson(filter)
+	l, err := r.helper.GetListFilter(ctx, filters, r.sort(r.filterOptions(listConfig), filter))
+	if err != nil {
+		return nil, err
+	}
+	filtered, _err := r.helper.GetFilterCount(ctx, filters)
+	if _err != nil {
+		return nil, _err
+	}
+	total, _err := r.helper.GetFilterCount(ctx, bson.M{})
+	if _err != nil {
+		return nil, _err
+	}
+	return &list.Result[*Entity]{
+		IsNext:        filtered > listConfig.Offset+listConfig.Limit,
+		IsPrev:        listConfig.Offset > 0,
+		FilteredTotal: filtered,
+		Total:         total,
+		Page:          listConfig.Offset/listConfig.Limit + 1,
+		List:          l,
+	}, nil
 }
 
 // GetByBusiness implements Repository.
@@ -174,4 +194,30 @@ func NewRepo(collection *mongo.Collection, factory Factory) Repository {
 
 func createEntity() **Entity {
 	return new(*Entity)
+}
+
+func (r *repo) filterOptions(listConfig list.Config) *options.FindOptions {
+	opts := &options.FindOptions{}
+	opts.SetSkip(listConfig.Offset).SetLimit(listConfig.Limit)
+	return opts
+}
+
+func (r *repo) sort(opts *options.FindOptions, filter FilterEntity) *options.FindOptions {
+	order := -1
+	field := fields.UpdatedAt
+	/*
+		if filter.Order == OrderAsc {
+			order = 1
+		}
+		switch filter.Sort {
+		case SortByMostRecent:
+			field = fields.UpdatedAt
+		case SortByNearest:
+			field = locationField(locationFields.Coordinates)
+		case SortByPrice:
+			field = priceField(priceFields.Price)
+		}
+	*/
+	opts.SetSort(bson.D{{Key: field, Value: order}})
+	return opts
 }
