@@ -2,6 +2,7 @@ package app
 
 import (
 	"github.com/turistikrota/service.notify/app/command"
+	"github.com/turistikrota/service.notify/app/query"
 )
 
 type Application struct {
@@ -23,4 +24,10 @@ type Commands struct {
 }
 
 type Queries struct {
+	ActorConfigFilter            query.ActorConfigFilterHandler
+	ActorConfigGetByBusinessUUID query.ActorConfigGetByBusinessUUIDHandler
+	ActorConfigGetByBusiness     query.ActorConfigGetByBusinessHandler
+	ActorConfigGetByUserUUID     query.ActorConfigGetByUserUUIDHandler
+	ActorConfigGetByUser         query.ActorConfigGetByUserHandler
+	ActorConfigGetByUUID         query.ActorConfigGetByUUIDHandler
 }
