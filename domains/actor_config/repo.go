@@ -129,29 +129,84 @@ func (r *repo) Filter(ctx context.Context, filter FilterEntity, listConfig list.
 	}, nil
 }
 
-// GetByBusiness implements Repository.
-func (*repo) GetByBusiness(ctx context.Context, actor WithActor) (*Entity, *i18np.Error) {
-	panic("unimplemented")
+func (r *repo) GetByBusiness(ctx context.Context, actor WithActor) (*Entity, *i18np.Error) {
+	filter := bson.M{
+		actorField(actorFields.UUID): actor.UUID,
+		actorField(actorFields.Name): actor.Name,
+		actorField(actorFields.Type): ActorTypeBusiness,
+	}
+	e, exist, err := r.helper.GetFilter(ctx, filter)
+	if err != nil {
+		return nil, r.factory.Errors.Failed("get")
+	}
+	if !exist {
+		return nil, r.factory.Errors.NotFound()
+	}
+	return *e, nil
 }
 
-// GetByBusinessUUID implements Repository.
-func (*repo) GetByBusinessUUID(ctx context.Context, uuid string) (*Entity, *i18np.Error) {
-	panic("unimplemented")
+func (r *repo) GetByBusinessUUID(ctx context.Context, uuid string) (*Entity, *i18np.Error) {
+	filter := bson.M{
+		actorField(actorFields.UUID): uuid,
+		actorField(actorFields.Type): ActorTypeBusiness,
+	}
+	e, exist, err := r.helper.GetFilter(ctx, filter)
+	if err != nil {
+		return nil, r.factory.Errors.Failed("get")
+	}
+	if !exist {
+		return nil, r.factory.Errors.NotFound()
+	}
+	return *e, nil
 }
 
-// GetByUUID implements Repository.
-func (*repo) GetByUUID(ctx context.Context, uuid string) (*Entity, *i18np.Error) {
-	panic("unimplemented")
+func (r *repo) GetByUUID(ctx context.Context, uuid string) (*Entity, *i18np.Error) {
+	id, _err := mongo2.TransformId(uuid)
+	if _err != nil {
+		return nil, r.factory.Errors.InvalidUUID()
+	}
+	filter := bson.M{
+		fields.UUID: id,
+	}
+	e, exist, err := r.helper.GetFilter(ctx, filter)
+	if err != nil {
+		return nil, r.factory.Errors.Failed("get")
+	}
+	if !exist {
+		return nil, r.factory.Errors.NotFound()
+	}
+	return *e, nil
 }
 
-// GetByUser implements Repository.
-func (*repo) GetByUser(ctx context.Context, actor WithActor) (*Entity, *i18np.Error) {
-	panic("unimplemented")
+func (r *repo) GetByUser(ctx context.Context, actor WithActor) (*Entity, *i18np.Error) {
+	filter := bson.M{
+		actorField(actorFields.UUID): actor.UUID,
+		actorField(actorFields.Name): actor.Name,
+		actorField(actorFields.Type): ActorTypeUser,
+	}
+	e, exist, err := r.helper.GetFilter(ctx, filter)
+	if err != nil {
+		return nil, r.factory.Errors.Failed("get")
+	}
+	if !exist {
+		return nil, r.factory.Errors.NotFound()
+	}
+	return *e, nil
 }
 
-// GetByUserUUID implements Repository.
-func (*repo) GetByUserUUID(ctx context.Context, uuid string) (*Entity, *i18np.Error) {
-	panic("unimplemented")
+func (r *repo) GetByUserUUID(ctx context.Context, uuid string) (*Entity, *i18np.Error) {
+	filter := bson.M{
+		actorField(actorFields.UUID): uuid,
+		actorField(actorFields.Type): ActorTypeUser,
+	}
+	e, exist, err := r.helper.GetFilter(ctx, filter)
+	if err != nil {
+		return nil, r.factory.Errors.Failed("get")
+	}
+	if !exist {
+		return nil, r.factory.Errors.NotFound()
+	}
+	return *e, nil
 }
 
 // RemoveMail implements Repository.
