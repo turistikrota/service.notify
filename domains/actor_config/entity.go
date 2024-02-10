@@ -14,19 +14,19 @@ type Entity struct {
 }
 
 type TelegramCredential struct {
-	Name   string `json:"name" bson:"name"`
-	ChatID string `json:"chatId" bson:"chat_id"`
+	Name   string `json:"name" bson:"name" validate:"required,min=3,max=100"`
+	ChatID string `json:"chatId" bson:"chat_id" validate:"required,min=3,max=100"`
 }
 
 type MailCredential struct {
-	Name  string `json:"name" bson:"name"`
-	Email string `json:"email" bson:"email"`
+	Name  string `json:"name" bson:"name" validate:"required,min=3,max=100"`
+	Email string `json:"email" bson:"email" validate:"required,email"`
 }
 
 type SMSCredential struct {
-	Name        string `json:"name" bson:"name"`
-	Phone       string `json:"phone" bson:"phone"`
-	CountryCode string `json:"countryCode" bson:"country_code"`
+	Name        string `json:"name" bson:"name" validate:"required,min=3,max=100"`
+	Phone       string `json:"phone" bson:"phone" validate:"required,min=8,max=15"`
+	CountryCode string `json:"countryCode" bson:"country_code" validate:"required,min=1,max=5"`
 }
 
 type Actor struct {
