@@ -8,14 +8,24 @@ import (
 	"github.com/turistikrota/service.notify/domains/actor_config"
 )
 
-type ActorConfigGetByBusinessUUIDQuery struct{}
+type ActorConfigGetByBusinessUUIDQuery struct {
+	UUID string `params:"uuid" validate:"required,object_id"`
+}
 
-type ActorConfigGetByBusinessUUIDRes struct{}
+type ActorConfigGetByBusinessUUIDRes struct {
+	Detail *actor_config.AdminDetailDto
+}
 
 type ActorConfigGetByBusinessUUIDHandler cqrs.HandlerFunc[ActorConfigGetByBusinessUUIDQuery, *ActorConfigGetByBusinessUUIDRes]
 
-func NewActorConfigGetByBusinessUUIDHandler(repo actor_config.Repository) ActorConfigGetByBusinessUUIDHandler {
+func NewActorConfigGetByBusinessUUIDHandler(factory actor_config.Factory, repo actor_config.Repository) ActorConfigGetByBusinessUUIDHandler {
 	return func(ctx context.Context, cmd ActorConfigGetByBusinessUUIDQuery) (*ActorConfigGetByBusinessUUIDRes, *i18np.Error) {
-		return nil, nil
+		res, err := repo.GetByBusinessUUID(ctx, cmd.UUID)
+		if err != nil {
+			return nil, factory.Errors.Failed(err.Error())
+		}
+		return &ActorConfigGetByBusinessUUIDRes{
+			Detail: res.ToAdminDetail(),
+		}, nil
 	}
 }
