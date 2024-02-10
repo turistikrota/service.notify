@@ -8,7 +8,12 @@ import (
 	"github.com/turistikrota/service.notify/domains/actor_config"
 )
 
-type ActorConfigRemoveMailCmd struct{}
+type ActorConfigRemoveMailCmd struct {
+	ActorUUID      string                 `json:"-"`
+	ActorName      string                 `json:"-"`
+	ActorType      actor_config.ActorType `json:"-"`
+	CredentialName string                 `json:"credential_name" validate:"required,min=3,max=100"`
+}
 
 type ActorConfigRemoveMailRes struct{}
 
@@ -16,6 +21,14 @@ type ActorConfigRemoveMailHandler cqrs.HandlerFunc[ActorConfigRemoveMailCmd, *Ac
 
 func NewActorConfigRemoveMailHandler(factory actor_config.Factory, repo actor_config.Repository) ActorConfigRemoveMailHandler {
 	return func(ctx context.Context, cmd ActorConfigRemoveMailCmd) (*ActorConfigRemoveMailRes, *i18np.Error) {
-		return nil, nil
+		err := repo.RemoveMail(ctx, actor_config.Actor{
+			UUID: cmd.ActorUUID,
+			Name: cmd.ActorName,
+			Type: cmd.ActorType,
+		}, cmd.CredentialName)
+		if err != nil {
+			return nil, factory.Errors.Failed(err.Error())
+		}
+		return &ActorConfigRemoveMailRes{}, nil
 	}
 }

@@ -8,7 +8,12 @@ import (
 	"github.com/turistikrota/service.notify/domains/actor_config"
 )
 
-type ActorConfigRemoveTelegramCmd struct{}
+type ActorConfigRemoveTelegramCmd struct {
+	ActorUUID      string                 `json:"-"`
+	ActorName      string                 `json:"-"`
+	ActorType      actor_config.ActorType `json:"-"`
+	CredentialName string                 `json:"credential_name" validate:"required,min=3,max=100"`
+}
 
 type ActorConfigRemoveTelegramRes struct{}
 
@@ -16,6 +21,14 @@ type ActorConfigRemoveTelegramHandler cqrs.HandlerFunc[ActorConfigRemoveTelegram
 
 func NewActorConfigRemoveTelegramHandler(factory actor_config.Factory, repo actor_config.Repository) ActorConfigRemoveTelegramHandler {
 	return func(ctx context.Context, cmd ActorConfigRemoveTelegramCmd) (*ActorConfigRemoveTelegramRes, *i18np.Error) {
-		return nil, nil
+		err := repo.RemoveTelegram(ctx, actor_config.Actor{
+			UUID: cmd.ActorUUID,
+			Name: cmd.ActorName,
+			Type: cmd.ActorType,
+		}, cmd.CredentialName)
+		if err != nil {
+			return nil, factory.Errors.Failed(err.Error())
+		}
+		return &ActorConfigRemoveTelegramRes{}, nil
 	}
 }
