@@ -39,12 +39,12 @@ func NewApplication(cnf Config) app.Application {
 			ActorConfigRemoveTelegram: command.NewActorConfigRemoveTelegramHandler(actorConfigFactory, actorConfigRepo),
 		},
 		Queries: app.Queries{
-			ActorConfigFilter:            query.NewActorConfigFilterHandler(actorConfigRepo),
-			ActorConfigGetByBusinessUUID: query.NewActorConfigGetByBusinessUUIDHandler(actorConfigRepo),
-			ActorConfigGetByBusiness:     query.NewActorConfigGetByBusinessHandler(actorConfigRepo),
-			ActorConfigGetByUserUUID:     query.NewActorConfigGetByUserUUIDHandler(actorConfigRepo),
-			ActorConfigGetByUser:         query.NewActorConfigGetByUserHandler(actorConfigRepo),
-			ActorConfigGetByUUID:         query.NewActorConfigGetByUUIDHandler(actorConfigRepo),
+			ActorConfigFilter:            query.NewActorConfigFilterHandler(actorConfigFactory, actorConfigRepo),
+			ActorConfigGetByBusinessUUID: query.NewActorConfigGetByBusinessUUIDHandler(actorConfigFactory, actorConfigRepo),
+			ActorConfigGetByBusiness:     query.NewActorConfigGetByBusinessHandler(actorConfigFactory, actorConfigRepo),
+			ActorConfigGetByUserUUID:     query.NewActorConfigGetByUserUUIDHandler(actorConfigFactory, actorConfigRepo),
+			ActorConfigGetByUser:         query.NewActorConfigGetByUserHandler(actorConfigFactory, actorConfigRepo),
+			ActorConfigGetByUUID:         query.NewActorConfigGetByUUIDHandler(actorConfigFactory, actorConfigRepo),
 		},
 	}
 }
