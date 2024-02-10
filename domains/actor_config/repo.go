@@ -29,9 +29,9 @@ type Repository interface {
 	AddMail(ctx context.Context, actor Actor, credential MailCredential) *i18np.Error
 	AddSMS(ctx context.Context, actor Actor, credential SMSCredential) *i18np.Error
 
-	UpdateTelegram(ctx context.Context, actor Actor, credential TelegramCredential) *i18np.Error
-	UpdateMail(ctx context.Context, actor Actor, credential MailCredential) *i18np.Error
-	UpdateSMS(ctx context.Context, actor Actor, credential SMSCredential) *i18np.Error
+	UpdateTelegram(ctx context.Context, actor Actor, credential TelegramCredential, oldName string) *i18np.Error
+	UpdateMail(ctx context.Context, actor Actor, credential MailCredential, oldName string) *i18np.Error
+	UpdateSMS(ctx context.Context, actor Actor, credential SMSCredential, oldName string) *i18np.Error
 
 	RemoveTelegram(ctx context.Context, actor Actor, credentialName string) *i18np.Error
 	RemoveMail(ctx context.Context, actor Actor, credentialName string) *i18np.Error
@@ -269,12 +269,12 @@ func (r *repo) RemoveTelegram(ctx context.Context, actor Actor, credentialName s
 	return r.helper.UpdateOne(ctx, filter, update)
 }
 
-func (r *repo) UpdateMail(ctx context.Context, actor Actor, credential MailCredential) *i18np.Error {
+func (r *repo) UpdateMail(ctx context.Context, actor Actor, credential MailCredential, oldName string) *i18np.Error {
 	filter := bson.M{
 		actorField(actorFields.UUID): actor.UUID,
 		actorField(actorFields.Name): actor.Name,
 		actorField(actorFields.Type): actor.Type,
-		mailField(mailFields.Name):   credential.Name,
+		mailField(mailFields.Name):   oldName,
 	}
 	update := bson.M{
 		"$set": bson.M{
@@ -285,12 +285,12 @@ func (r *repo) UpdateMail(ctx context.Context, actor Actor, credential MailCrede
 	return r.helper.UpdateOne(ctx, filter, update)
 }
 
-func (r *repo) UpdateSMS(ctx context.Context, actor Actor, credential SMSCredential) *i18np.Error {
+func (r *repo) UpdateSMS(ctx context.Context, actor Actor, credential SMSCredential, oldName string) *i18np.Error {
 	filter := bson.M{
 		actorField(actorFields.UUID): actor.UUID,
 		actorField(actorFields.Name): actor.Name,
 		actorField(actorFields.Type): actor.Type,
-		smsField(smsFields.Name):     credential.Name,
+		smsField(smsFields.Name):     oldName,
 	}
 	update := bson.M{
 		"$set": bson.M{
@@ -302,12 +302,12 @@ func (r *repo) UpdateSMS(ctx context.Context, actor Actor, credential SMSCredent
 	return r.helper.UpdateOne(ctx, filter, update)
 }
 
-func (r *repo) UpdateTelegram(ctx context.Context, actor Actor, credential TelegramCredential) *i18np.Error {
+func (r *repo) UpdateTelegram(ctx context.Context, actor Actor, credential TelegramCredential, oldName string) *i18np.Error {
 	filter := bson.M{
 		actorField(actorFields.UUID):       actor.UUID,
 		actorField(actorFields.Name):       actor.Name,
 		actorField(actorFields.Type):       actor.Type,
-		telegramField(telegramFields.Name): credential.Name,
+		telegramField(telegramFields.Name): oldName,
 	}
 	update := bson.M{
 		"$set": bson.M{
