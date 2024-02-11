@@ -7,6 +7,7 @@ import (
 	"github.com/turistikrota/service.notify/app/command"
 	"github.com/turistikrota/service.notify/domains/actor_config"
 	"github.com/turistikrota/service.shared/server/http/auth/current_account"
+	"github.com/turistikrota/service.shared/server/http/auth/current_business"
 	"github.com/turistikrota/service.shared/server/http/auth/current_user"
 )
 
@@ -137,39 +138,138 @@ func (h srv) UserRemoveTelegram(ctx *fiber.Ctx) error {
 }
 
 func (h srv) BusinessAddMail(ctx *fiber.Ctx) error {
-	return nil
+	cmd := command.ActorConfigAddMailCmd{}
+	h.parseBody(ctx, &cmd)
+	business := current_business.Parse(ctx)
+	cmd.ActorUUID = business.UUID
+	cmd.ActorName = business.NickName
+	cmd.ActorType = actor_config.ActorTypeBusiness
+	res, err := h.app.Commands.ActorConfigAddMail(ctx.Context(), cmd)
+	if err != nil {
+		l, a := i18n.GetLanguagesInContext(*h.i18n, ctx)
+		return result.Error(h.i18n.TranslateFromError(*err, l, a))
+	}
+	return result.SuccessDetail(Messages.Success.Ok, res)
 }
 
 func (h srv) BusinessAddSms(ctx *fiber.Ctx) error {
-	return nil
+	cmd := command.ActorConfigAddSmsCmd{}
+	h.parseBody(ctx, &cmd)
+	business := current_business.Parse(ctx)
+	cmd.ActorUUID = business.UUID
+	cmd.ActorName = business.NickName
+	cmd.ActorType = actor_config.ActorTypeBusiness
+	res, err := h.app.Commands.ActorConfigAddSms(ctx.Context(), cmd)
+	if err != nil {
+		l, a := i18n.GetLanguagesInContext(*h.i18n, ctx)
+		return result.Error(h.i18n.TranslateFromError(*err, l, a))
+	}
+	return result.SuccessDetail(Messages.Success.Ok, res)
 }
 
 func (h srv) BusinessAddTelegram(ctx *fiber.Ctx) error {
-	return nil
+	cmd := command.ActorConfigAddTelegramCmd{}
+	h.parseBody(ctx, &cmd)
+	business := current_business.Parse(ctx)
+	cmd.ActorUUID = business.UUID
+	cmd.ActorName = business.NickName
+	cmd.ActorType = actor_config.ActorTypeBusiness
+	res, err := h.app.Commands.ActorConfigAddTelegram(ctx.Context(), cmd)
+	if err != nil {
+		l, a := i18n.GetLanguagesInContext(*h.i18n, ctx)
+		return result.Error(h.i18n.TranslateFromError(*err, l, a))
+	}
+	return result.SuccessDetail(Messages.Success.Ok, res)
 }
 
 func (h srv) BusinessUpdateMail(ctx *fiber.Ctx) error {
-	return nil
+	cmd := command.ActorConfigUpdateMailCmd{}
+	h.parseBody(ctx, &cmd)
+	business := current_business.Parse(ctx)
+	cmd.ActorUUID = business.UUID
+	cmd.ActorName = business.NickName
+	cmd.ActorType = actor_config.ActorTypeBusiness
+	res, err := h.app.Commands.ActorConfigUpdateMail(ctx.Context(), cmd)
+	if err != nil {
+		l, a := i18n.GetLanguagesInContext(*h.i18n, ctx)
+		return result.Error(h.i18n.TranslateFromError(*err, l, a))
+	}
+	return result.SuccessDetail(Messages.Success.Ok, res)
 }
 
 func (h srv) BusinessUpdateSms(ctx *fiber.Ctx) error {
-	return nil
+	cmd := command.ActorConfigUpdateSmsCmd{}
+	h.parseBody(ctx, &cmd)
+	business := current_business.Parse(ctx)
+	cmd.ActorUUID = business.UUID
+	cmd.ActorName = business.NickName
+	cmd.ActorType = actor_config.ActorTypeBusiness
+	res, err := h.app.Commands.ActorConfigUpdateSms(ctx.Context(), cmd)
+	if err != nil {
+		l, a := i18n.GetLanguagesInContext(*h.i18n, ctx)
+		return result.Error(h.i18n.TranslateFromError(*err, l, a))
+	}
+	return result.SuccessDetail(Messages.Success.Ok, res)
 }
 
 func (h srv) BusinessUpdateTelegram(ctx *fiber.Ctx) error {
-	return nil
+	cmd := command.ActorConfigUpdateTelegramCmd{}
+	h.parseBody(ctx, &cmd)
+	business := current_business.Parse(ctx)
+	cmd.ActorUUID = business.UUID
+	cmd.ActorName = business.NickName
+	cmd.ActorType = actor_config.ActorTypeBusiness
+	res, err := h.app.Commands.ActorConfigUpdateTelegram(ctx.Context(), cmd)
+	if err != nil {
+		l, a := i18n.GetLanguagesInContext(*h.i18n, ctx)
+		return result.Error(h.i18n.TranslateFromError(*err, l, a))
+	}
+	return result.SuccessDetail(Messages.Success.Ok, res)
 }
 
 func (h srv) BusinessRemoveMail(ctx *fiber.Ctx) error {
-	return nil
+	cmd := command.ActorConfigRemoveMailCmd{}
+	h.parseBody(ctx, &cmd)
+	business := current_business.Parse(ctx)
+	cmd.ActorUUID = business.UUID
+	cmd.ActorName = business.NickName
+	cmd.ActorType = actor_config.ActorTypeBusiness
+	res, err := h.app.Commands.ActorConfigRemoveMail(ctx.Context(), cmd)
+	if err != nil {
+		l, a := i18n.GetLanguagesInContext(*h.i18n, ctx)
+		return result.Error(h.i18n.TranslateFromError(*err, l, a))
+	}
+	return result.SuccessDetail(Messages.Success.Ok, res)
 }
 
 func (h srv) BusinessRemoveSms(ctx *fiber.Ctx) error {
-	return nil
+	cmd := command.ActorConfigRemoveSmsCmd{}
+	h.parseBody(ctx, &cmd)
+	business := current_business.Parse(ctx)
+	cmd.ActorUUID = business.UUID
+	cmd.ActorName = business.NickName
+	cmd.ActorType = actor_config.ActorTypeBusiness
+	res, err := h.app.Commands.ActorConfigRemoveSms(ctx.Context(), cmd)
+	if err != nil {
+		l, a := i18n.GetLanguagesInContext(*h.i18n, ctx)
+		return result.Error(h.i18n.TranslateFromError(*err, l, a))
+	}
+	return result.SuccessDetail(Messages.Success.Ok, res)
 }
 
 func (h srv) BusinessRemoveTelegram(ctx *fiber.Ctx) error {
-	return nil
+	cmd := command.ActorConfigRemoveTelegramCmd{}
+	h.parseBody(ctx, &cmd)
+	business := current_business.Parse(ctx)
+	cmd.ActorUUID = business.UUID
+	cmd.ActorName = business.NickName
+	cmd.ActorType = actor_config.ActorTypeBusiness
+	res, err := h.app.Commands.ActorConfigRemoveTelegram(ctx.Context(), cmd)
+	if err != nil {
+		l, a := i18n.GetLanguagesInContext(*h.i18n, ctx)
+		return result.Error(h.i18n.TranslateFromError(*err, l, a))
+	}
+	return result.SuccessDetail(Messages.Success.Ok, res)
 }
 
 func (h srv) AdminFilter(ctx *fiber.Ctx) error {
