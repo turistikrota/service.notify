@@ -5,7 +5,9 @@ import (
 	"github.com/cilloparch/cillop/result"
 	"github.com/gofiber/fiber/v2"
 	"github.com/turistikrota/service.notify/app/command"
+	"github.com/turistikrota/service.notify/app/query"
 	"github.com/turistikrota/service.notify/domains/actor_config"
+	"github.com/turistikrota/service.notify/pkg/utils"
 	"github.com/turistikrota/service.shared/server/http/auth/current_account"
 	"github.com/turistikrota/service.shared/server/http/auth/current_business"
 	"github.com/turistikrota/service.shared/server/http/auth/current_user"
@@ -273,25 +275,76 @@ func (h srv) BusinessRemoveTelegram(ctx *fiber.Ctx) error {
 }
 
 func (h srv) AdminFilter(ctx *fiber.Ctx) error {
-	return nil
+	pagi := utils.Pagination{}
+	h.parseQuery(ctx, &pagi)
+	filter := actor_config.FilterEntity{}
+	h.parseQuery(ctx, &filter)
+	query := query.ActorConfigFilterQuery{
+		FilterEntity: &filter,
+		Pagination:   &pagi,
+	}
+	res, err := h.app.Queries.ActorConfigFilter(ctx.Context(), query)
+	if err != nil {
+		l, a := i18n.GetLanguagesInContext(*h.i18n, ctx)
+		return result.Error(h.i18n.TranslateFromError(*err, l, a))
+	}
+	return result.SuccessDetail(Messages.Success.Ok, res)
 }
 
 func (h srv) AdminDetail(ctx *fiber.Ctx) error {
-	return nil
+	query := query.ActorConfigGetByUUIDQuery{}
+	h.parseParams(ctx, &query)
+	res, err := h.app.Queries.ActorConfigGetByUUID(ctx.Context(), query)
+	if err != nil {
+		l, a := i18n.GetLanguagesInContext(*h.i18n, ctx)
+		return result.Error(h.i18n.TranslateFromError(*err, l, a))
+	}
+	return result.SuccessDetail(Messages.Success.Ok, res)
 }
 
 func (h srv) AdminDetailByUser(ctx *fiber.Ctx) error {
-	return nil
+	query := query.ActorConfigGetByUserUUIDQuery{}
+	h.parseParams(ctx, &query)
+	res, err := h.app.Queries.ActorConfigGetByUserUUID(ctx.Context(), query)
+	if err != nil {
+		l, a := i18n.GetLanguagesInContext(*h.i18n, ctx)
+		return result.Error(h.i18n.TranslateFromError(*err, l, a))
+	}
+	return result.SuccessDetail(Messages.Success.Ok, res)
 }
 
 func (h srv) AdminDetailByBusiness(ctx *fiber.Ctx) error {
-	return nil
+	query := query.ActorConfigGetByBusinessUUIDQuery{}
+	h.parseParams(ctx, &query)
+	res, err := h.app.Queries.ActorConfigGetByBusinessUUID(ctx.Context(), query)
+	if err != nil {
+		l, a := i18n.GetLanguagesInContext(*h.i18n, ctx)
+		return result.Error(h.i18n.TranslateFromError(*err, l, a))
+	}
+	return result.SuccessDetail(Messages.Success.Ok, res)
 }
 
 func (h srv) GetBySelectedUser(ctx *fiber.Ctx) error {
-	return nil
+	query := query.ActorConfigGetByUserQuery{}
+	query.UserName = current_account.Parse(ctx).Name
+	query.UserUUID = current_user.Parse(ctx).UUID
+	res, err := h.app.Queries.ActorConfigGetByUser(ctx.Context(), query)
+	if err != nil {
+		l, a := i18n.GetLanguagesInContext(*h.i18n, ctx)
+		return result.Error(h.i18n.TranslateFromError(*err, l, a))
+	}
+	return result.SuccessDetail(Messages.Success.Ok, res)
 }
 
 func (h srv) GetBySelectedBusiness(ctx *fiber.Ctx) error {
-	return nil
+	query := query.ActorConfigGetByBusinessQuery{}
+	business := current_business.Parse(ctx)
+	query.BusinessName = business.NickName
+	query.BusinessUUID = business.UUID
+	res, err := h.app.Queries.ActorConfigGetByBusiness(ctx.Context(), query)
+	if err != nil {
+		l, a := i18n.GetLanguagesInContext(*h.i18n, ctx)
+		return result.Error(h.i18n.TranslateFromError(*err, l, a))
+	}
+	return result.SuccessDetail(Messages.Success.Ok, res)
 }
