@@ -77,9 +77,9 @@ func (h srv) Listen() error {
 			business.Put("/mail", h.currentBusinessAccess(config.Roles.ActorConfig.Super, config.Roles.ActorConfig.EditMail), h.wrapWithTimeout(h.BusinessUpdateMail))
 			business.Put("/sms", h.currentBusinessAccess(config.Roles.ActorConfig.Super, config.Roles.ActorConfig.EditSms), h.wrapWithTimeout(h.BusinessUpdateSms))
 			business.Put("/telegram", h.currentBusinessAccess(config.Roles.ActorConfig.Super, config.Roles.ActorConfig.EditTelegram), h.wrapWithTimeout(h.BusinessUpdateTelegram))
-			business.Delete("/mail", h.currentBusinessAccess(config.Roles.ActorConfig.Super, config.Roles.ActorConfig.RemoveMail), h.wrapWithTimeout(h.BusinessRemoveMail))
-			business.Delete("/sms", h.currentBusinessAccess(config.Roles.ActorConfig.Super, config.Roles.ActorConfig.RemoveSms), h.wrapWithTimeout(h.BusinessRemoveSms))
-			business.Delete("/telegram", h.currentBusinessAccess(config.Roles.ActorConfig.Super, config.Roles.ActorConfig.RemoveTelegram), h.wrapWithTimeout(h.BusinessRemoveTelegram))
+			business.Patch("/mail", h.currentBusinessAccess(config.Roles.ActorConfig.Super, config.Roles.ActorConfig.RemoveMail), h.wrapWithTimeout(h.BusinessRemoveMail))
+			business.Patch("/sms", h.currentBusinessAccess(config.Roles.ActorConfig.Super, config.Roles.ActorConfig.RemoveSms), h.wrapWithTimeout(h.BusinessRemoveSms))
+			business.Patch("/telegram", h.currentBusinessAccess(config.Roles.ActorConfig.Super, config.Roles.ActorConfig.RemoveTelegram), h.wrapWithTimeout(h.BusinessRemoveTelegram))
 
 			// user routes
 			user := router.Group("/user", h.rateLimit(), h.currentUserAccess(), h.requiredAccess(), h.currentAccountAccess())
@@ -90,9 +90,9 @@ func (h srv) Listen() error {
 			user.Put("/mail", h.wrapWithTimeout(h.UserUpdateMail))
 			user.Put("/sms", h.wrapWithTimeout(h.UserUpdateSms))
 			user.Put("/telegram", h.wrapWithTimeout(h.UserUpdateTelegram))
-			user.Delete("/mail", h.wrapWithTimeout(h.UserRemoveMail))
-			user.Delete("/sms", h.wrapWithTimeout(h.UserRemoveSms))
-			user.Delete("/telegram", h.wrapWithTimeout(h.UserRemoveTelegram))
+			user.Patch("/mail", h.wrapWithTimeout(h.UserRemoveMail))
+			user.Patch("/sms", h.wrapWithTimeout(h.UserRemoveSms))
+			user.Patch("/telegram", h.wrapWithTimeout(h.UserRemoveTelegram))
 
 			// admin routes
 			admin := router.Group("/admin", h.currentUserAccess(), h.requiredAccess())
