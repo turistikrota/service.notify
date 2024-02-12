@@ -21,7 +21,7 @@ type Repository interface {
 	GetByUUID(ctx context.Context, uuid string) (*Entity, *i18np.Error)
 	GetByUser(ctx context.Context, actor WithActor) (*Entity, *i18np.Error)
 	GetByBusiness(ctx context.Context, actor WithActor) (*Entity, *i18np.Error)
-	GetByUserUUID(ctx context.Context, uuid string) (*Entity, *i18np.Error)
+	GetByUserName(ctx context.Context, name string) (*Entity, *i18np.Error)
 	GetByBusinessUUID(ctx context.Context, uuid string) (*Entity, *i18np.Error)
 	Filter(ctx context.Context, filter FilterEntity, listConfig list.Config) (*list.Result[*Entity], *i18np.Error)
 
@@ -194,9 +194,9 @@ func (r *repo) GetByUser(ctx context.Context, actor WithActor) (*Entity, *i18np.
 	return *e, nil
 }
 
-func (r *repo) GetByUserUUID(ctx context.Context, uuid string) (*Entity, *i18np.Error) {
+func (r *repo) GetByUserName(ctx context.Context, name string) (*Entity, *i18np.Error) {
 	filter := bson.M{
-		actorField(actorFields.UUID): uuid,
+		actorField(actorFields.Name): name,
 		actorField(actorFields.Type): ActorTypeUser,
 	}
 	e, exist, err := r.helper.GetFilter(ctx, filter)

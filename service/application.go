@@ -42,7 +42,7 @@ func NewApplication(cnf Config) app.Application {
 			ActorConfigFilter:            query.NewActorConfigFilterHandler(actorConfigFactory, actorConfigRepo),
 			ActorConfigGetByBusinessUUID: query.NewActorConfigGetByBusinessUUIDHandler(actorConfigFactory, actorConfigRepo),
 			ActorConfigGetByBusiness:     query.NewActorConfigGetByBusinessHandler(actorConfigFactory, actorConfigRepo),
-			ActorConfigGetByUserUUID:     query.NewActorConfigGetByUserUUIDHandler(actorConfigFactory, actorConfigRepo),
+			ActorConfigGetByUserName:     query.NewActorConfigGetByUserNameHandler(actorConfigFactory, actorConfigRepo),
 			ActorConfigGetByUser:         query.NewActorConfigGetByUserHandler(actorConfigFactory, actorConfigRepo),
 			ActorConfigGetByUUID:         query.NewActorConfigGetByUUIDHandler(actorConfigFactory, actorConfigRepo),
 		},

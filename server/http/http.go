@@ -99,7 +99,7 @@ func (h srv) Listen() error {
 			admin.Get("/", h.adminRoute(config.Roles.ActorConfig.Super, config.Roles.ActorConfig.List), h.wrapWithTimeout(h.AdminFilter))
 			admin.Get("/:uuid", h.adminRoute(config.Roles.ActorConfig.Super, config.Roles.ActorConfig.View), h.wrapWithTimeout(h.AdminDetail))
 			admin.Get("/business/:uuid", h.adminRoute(config.Roles.ActorConfig.Super, config.Roles.ActorConfig.View), h.wrapWithTimeout(h.AdminDetailByBusiness))
-			admin.Get("/user/:uuid", h.adminRoute(config.Roles.ActorConfig.Super, config.Roles.ActorConfig.View), h.wrapWithTimeout(h.AdminDetailByUser))
+			admin.Get("/user/:name", h.adminRoute(config.Roles.ActorConfig.Super, config.Roles.ActorConfig.View), h.wrapWithTimeout(h.AdminDetailByUser))
 
 			return router
 		},

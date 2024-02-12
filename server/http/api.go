@@ -303,9 +303,9 @@ func (h srv) AdminDetail(ctx *fiber.Ctx) error {
 }
 
 func (h srv) AdminDetailByUser(ctx *fiber.Ctx) error {
-	query := query.ActorConfigGetByUserUUIDQuery{}
+	query := query.ActorConfigGetByUserNameQuery{}
 	h.parseParams(ctx, &query)
-	res, err := h.app.Queries.ActorConfigGetByUserUUID(ctx.Context(), query)
+	res, err := h.app.Queries.ActorConfigGetByUserName(ctx.Context(), query)
 	if err != nil {
 		l, a := i18n.GetLanguagesInContext(*h.i18n, ctx)
 		return result.Error(h.i18n.TranslateFromError(*err, l, a))

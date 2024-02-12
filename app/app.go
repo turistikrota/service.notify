@@ -27,7 +27,7 @@ type Queries struct {
 	ActorConfigFilter            query.ActorConfigFilterHandler
 	ActorConfigGetByBusinessUUID query.ActorConfigGetByBusinessUUIDHandler
 	ActorConfigGetByBusiness     query.ActorConfigGetByBusinessHandler
-	ActorConfigGetByUserUUID     query.ActorConfigGetByUserUUIDHandler
+	ActorConfigGetByUserName     query.ActorConfigGetByUserNameHandler
 	ActorConfigGetByUser         query.ActorConfigGetByUserHandler
 	ActorConfigGetByUUID         query.ActorConfigGetByUUIDHandler
 }
