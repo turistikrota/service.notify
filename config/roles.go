@@ -19,6 +19,7 @@ type actorConfigRoles struct {
 
 type notifyRoles struct {
 	TestEmail string
+	TestSms   string
 }
 
 type businessRoles struct {
@@ -50,6 +51,7 @@ var Roles = roles{
 	},
 	Notify: notifyRoles{
 		TestEmail: "notify.test_email",
+		TestSms:   "notify.test_sms",
 	},
 	Business: businessRoles{
 		Super: "business.super",

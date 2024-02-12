@@ -50,3 +50,4 @@ http_error_forbidden_account_select = "You are not allowed to access this accoun
 notify_failed = "Failed to process notification. Please try again later. Operation: {{.Operation}}"
 notify_test_mail_subject = "Test Mail"
 notify_test_mail_content = "This is a test mail."
+notify_test_sms_content = "This is a test sms."
