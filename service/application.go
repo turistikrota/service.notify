@@ -27,7 +27,8 @@ func NewApplication(cnf Config) app.Application {
 
 	return app.Application{
 		Commands: app.Commands{
-			ActorConfigCreate:         command.NewActorConfigCreateHandler(actorConfigFactory, actorConfigRepo),
+			ActorConfigCreateUser:     command.NewActorConfigCreateUserHandler(actorConfigFactory, actorConfigRepo),
+			ActorConfigCreateBusiness: command.NewActorConfigCreateBusinessHandler(actorConfigFactory, actorConfigRepo),
 			ActorConfigAddMail:        command.NewActorConfigAddMailHandler(actorConfigFactory, actorConfigRepo),
 			ActorConfigAddSms:         command.NewActorConfigAddSmsHandler(actorConfigFactory, actorConfigRepo),
 			ActorConfigAddTelegram:    command.NewActorConfigAddTelegramHandler(actorConfigFactory, actorConfigRepo),

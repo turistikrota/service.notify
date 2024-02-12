@@ -28,5 +28,7 @@ func New(config Config) server.Server {
 }
 
 func (s srv) Listen() error {
+	s.engine.Subscribe(s.topics.Account.Created, s.OnAccountCreated)
+	s.engine.Subscribe(s.topics.Business.Created, s.OnBusinessCreated)
 	return nil
 }

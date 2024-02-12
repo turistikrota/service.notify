@@ -86,7 +86,17 @@ type RSA struct {
 	PublicKeyFile  string `env:"RSA_PUBLIC_KEY"`
 }
 
+type AccountTopics struct {
+	Created string `env:"STREAMING_TOPIC_ACCOUNT_CREATED"`
+}
+
+type BusinessTopics struct {
+	Created string `env:"STREAMING_TOPIC_BUSINESS_CREATED"`
+}
+
 type Topics struct {
+	Account  AccountTopics
+	Business BusinessTopics
 }
 
 type Nats struct {

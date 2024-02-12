@@ -11,7 +11,8 @@ type Application struct {
 }
 
 type Commands struct {
-	ActorConfigCreate         command.ActorConfigCreateHandler
+	ActorConfigCreateUser     command.ActorConfigCreateUserHandler
+	ActorConfigCreateBusiness command.ActorConfigCreateBusinessHandler
 	ActorConfigAddMail        command.ActorConfigAddMailHandler
 	ActorConfigAddSms         command.ActorConfigAddSmsHandler
 	ActorConfigAddTelegram    command.ActorConfigAddTelegramHandler
