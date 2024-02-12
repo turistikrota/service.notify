@@ -1,7 +1,6 @@
 package http
 
 import (
-	"fmt"
 	"strings"
 	"time"
 
@@ -83,7 +82,7 @@ func (h srv) Listen() error {
 			business.Patch("/telegram", h.currentBusinessAccess(config.Roles.ActorConfig.Super, config.Roles.ActorConfig.RemoveTelegram), h.wrapWithTimeout(h.BusinessRemoveTelegram))
 
 			// user routes
-			user := router.Group("/user", h.logger(0), h.rateLimit(), h.logger(1), h.currentUserAccess(), h.logger(2), h.requiredAccess(), h.logger(3), h.currentAccountAccess(), h.logger(4))
+			user := router.Group("/user", h.rateLimit(), h.currentUserAccess(), h.requiredAccess(), h.currentAccountAccess())
 			user.Get("/", h.wrapWithTimeout(h.GetBySelectedUser))
 			user.Post("/mail", h.wrapWithTimeout(h.UserAddMail))
 			user.Post("/sms", h.wrapWithTimeout(h.UserAddSms))
@@ -105,13 +104,6 @@ func (h srv) Listen() error {
 			return router
 		},
 	})
-}
-
-func (h srv) logger(count int) fiber.Handler {
-	return func(ctx *fiber.Ctx) error {
-		fmt.Println("Request count: ", count)
-		return ctx.Next()
-	}
 }
 
 func (h srv) currentBusinessAccess(roles ...string) fiber.Handler {
