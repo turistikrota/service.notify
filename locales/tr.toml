@@ -32,3 +32,17 @@ error_notify_failed = "Bildirimler işlenirken bir hata oluştu."
 error_notify_validation_failed = "Bildirimler doğrulanırken bir hata oluştu."
 error_notify_type_not_found = "Bildirim türü bulunamadı."
 error_notify_not_found = "Bildirim bulunamadı."
+
+actor_config_failed = "Actor konfigürasyonu başarısız oldu."
+actor_config_not_found = "Actor konfigürasyonu bulunamadı."
+actor_config_invalid_uuid = "Geçersiz actor konfigürasyonu UUID."
+
+http_success_ok = "İşlem başarıyla tamamlandı."
+
+http_error_required_auth = "Bu işlem için kimlik doğrulaması gerekiyor."
+http_error_current_user_access = "Geçerli kullanıcıya erişim izni yok."
+http_error_admin_route = "Bu yönlendirme yalnızca yönetici kullanıcılar için kullanılabilir."
+http_error_required_business_select = "Bu işlem için bir işletme seçmelisiniz."
+http_error_forbidden_business_select = "Bu işletmeye erişim izniniz yok."
+http_error_required_account_select = "Bu işlem için bir hesap seçmelisiniz."
+http_error_forbidden_account_select = "Bu hesaba erişim izniniz yok."

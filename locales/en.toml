@@ -32,3 +32,17 @@ error_notify_failed = "Failed to process notification. Please try again later. O
 error_notify_validation_failed = "Validation failed."
 error_notify_type_not_found = "Notification type not found."
 error_notify_not_found = "Notification not found."
+
+actor_config_failed = "Failed to retrieve actor configuration."
+actor_config_not_found = "Actor configuration not found."
+actor_config_invalid_uuid = "Invalid actor configuration UUID."
+
+http_success_ok = "Operation successful."
+
+http_error_required_auth = "Authentication is required."
+http_error_current_user_access = "An error occurred while retrieving the current user."
+http_error_admin_route = "This route is only accessible by admins."
+http_error_required_business_select = "Business selection is required."
+http_error_forbidden_business_select = "You are not allowed to access this business."
+http_error_required_account_select = "Account selection is required."
+http_error_forbidden_account_select = "You are not allowed to access this account."
