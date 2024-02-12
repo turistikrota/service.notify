@@ -22,6 +22,30 @@ type Http struct {
 	Group string `env:"SERVER_GROUP" envDefault:"account"`
 }
 
+type Firebase struct {
+	SecretFile string `env:"FIREBASE_SECRET_FILE"`
+}
+
+type NetGsm struct {
+	UserName string `env:"NETGSM_USERNAME"`
+	Password string `env:"NETGSM_PASSWORD"`
+	Title    string `env:"NETGSM_TITLE"`
+	Company  string `env:"NETGSM_COMPANY"`
+}
+
+type MailGun struct {
+	FromMail string `env:"MAIL_GUN_FROM_MAIL"`
+	SmtpHost string `env:"MAIL_GUN_SMTP_HOST"`
+	SmtpPort string `env:"MAIL_GUN_SMTP_PORT"`
+	Password string `env:"MAIL_GUN_PASSWORD"`
+	Username string `env:"MAIL_GUN_USERNAME"`
+	Identity string `env:"MAIL_GUN_IDENTITY"`
+}
+
+type Telegram struct {
+	Token string `env:"TELEGRAM_TOKEN"`
+}
+
 type Grpc struct {
 	Port int `env:"GRPC_PORT" envDefault:"3001"`
 }
@@ -75,6 +99,12 @@ type App struct {
 	DB       struct {
 		ActorConfig MongoActorConfig
 	}
+	Adapters struct {
+		MailGun  MailGun
+		Telegram Telegram
+		NetGsm   NetGsm
+		Firebase Firebase
+	}
 	Grpc        Grpc
 	Http        Http
 	HttpHeaders HttpHeaders
@@ -86,4 +116,5 @@ type App struct {
 	TokenSrv    TokenSrv
 	CacheRedis  CacheRedis
 	RSA         RSA
+	Firebase    Firebase
 }
