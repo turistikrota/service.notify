@@ -7,6 +7,7 @@ import (
 	"github.com/cilloparch/cillop/validation"
 	"github.com/turistikrota/service.notify/adapters/mail"
 	"github.com/turistikrota/service.notify/adapters/sms"
+	"github.com/turistikrota/service.notify/adapters/telegram"
 	"github.com/turistikrota/service.notify/app"
 	"github.com/turistikrota/service.notify/app/command"
 	"github.com/turistikrota/service.notify/app/query"
@@ -34,6 +35,7 @@ func NewApplication(cnf Config) app.Application {
 
 	mail := mail.New(cnf.App.Smtp)
 	sms := sms.New(cnf.App.Adapters.NetGsm)
+	telegram := telegram.New(cnf.App.Adapters.Telegram)
 
 	return app.Application{
 		Commands: app.Commands{
@@ -50,6 +52,7 @@ func NewApplication(cnf Config) app.Application {
 			ActorConfigRemoveTelegram: command.NewActorConfigRemoveTelegramHandler(actorConfigFactory, actorConfigRepo),
 			NotifyTestMail:            command.NewNotifyTestMailHandler(notifyFactory, cnf.I18n, mail),
 			NotifyTestSms:             command.NewNotifyTestSmsHandler(notifyFactory, cnf.I18n, sms),
+			NotifyTestTelegram:        command.NewNotifyTestTelegramHandler(notifyFactory, cnf.I18n, telegram),
 		},
 		Queries: app.Queries{
 			ActorConfigFilter:            query.NewActorConfigFilterHandler(actorConfigFactory, actorConfigRepo),

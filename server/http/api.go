@@ -372,3 +372,15 @@ func (h srv) NotifyTestSms(ctx *fiber.Ctx) error {
 	}
 	return result.SuccessDetail(Messages.Success.Ok, res)
 }
+
+func (h srv) NotifyTestTelegram(ctx *fiber.Ctx) error {
+	cmd := command.NotifyTestTelegramCmd{}
+	h.parseBody(ctx, &cmd)
+	l, a := i18n.GetLanguagesInContext(*h.i18n, ctx)
+	cmd.Locale = l
+	res, err := h.app.Commands.NotifyTestTelegram(ctx.UserContext(), cmd)
+	if err != nil {
+		return result.Error(h.i18n.TranslateFromError(*err, l, a))
+	}
+	return result.SuccessDetail(Messages.Success.Ok, res)
+}

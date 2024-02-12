@@ -23,8 +23,9 @@ type Commands struct {
 	ActorConfigRemoveSms      command.ActorConfigRemoveSmsHandler
 	ActorConfigRemoveTelegram command.ActorConfigRemoveTelegramHandler
 
-	NotifyTestMail command.NotifyTestMailHandler
-	NotifyTestSms  command.NotifyTestSmsHandler
+	NotifyTestMail     command.NotifyTestMailHandler
+	NotifyTestSms      command.NotifyTestSmsHandler
+	NotifyTestTelegram command.NotifyTestTelegramHandler
 }
 
 type Queries struct {

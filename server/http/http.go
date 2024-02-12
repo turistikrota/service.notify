@@ -103,6 +103,7 @@ func (h srv) Listen() error {
 
 			admin.Post("/test/mail", h.adminRoute(config.Roles.ActorConfig.Super, config.Roles.Notify.TestEmail), h.wrapWithTimeout(h.NotifyTestEmail))
 			admin.Post("/test/sms", h.adminRoute(config.Roles.ActorConfig.Super, config.Roles.Notify.TestSms), h.wrapWithTimeout(h.NotifyTestSms))
+			admin.Post("/test/telegram", h.adminRoute(config.Roles.ActorConfig.Super, config.Roles.Notify.TestTelegram), h.wrapWithTimeout(h.NotifyTestTelegram))
 
 			return router
 		},

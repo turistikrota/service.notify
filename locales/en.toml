@@ -51,3 +51,4 @@ notify_failed = "Failed to process notification. Please try again later. Operati
 notify_test_mail_subject = "Test Mail"
 notify_test_mail_content = "This is a test mail."
 notify_test_sms_content = "This is a test sms."
+notify_test_telegram_content = "This is a test telegram message."
