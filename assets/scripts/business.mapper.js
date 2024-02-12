@@ -1,9 +1,9 @@
-const data = require('./data.json')
+const data = require('./business.businesses.json')
 const fs = require('fs')
 
 const res = data.map(business => ({
     actor: {
-        uuid: business._id,
+        uuid: business._id.$oid,
         name: business.nick_name,
         type:"business"
     },

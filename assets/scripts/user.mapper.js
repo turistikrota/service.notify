@@ -1,4 +1,4 @@
-const data = require('./data.json')
+const data = require('./account.user_accounts.json')
 const fs = require('fs')
 
 const res = data.map(user => ({
