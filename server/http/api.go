@@ -288,7 +288,7 @@ func (h srv) AdminFilter(ctx *fiber.Ctx) error {
 		l, a := i18n.GetLanguagesInContext(*h.i18n, ctx)
 		return result.Error(h.i18n.TranslateFromError(*err, l, a))
 	}
-	return result.SuccessDetail(Messages.Success.Ok, res)
+	return result.SuccessDetail(Messages.Success.Ok, res.List)
 }
 
 func (h srv) AdminDetail(ctx *fiber.Ctx) error {
@@ -299,7 +299,7 @@ func (h srv) AdminDetail(ctx *fiber.Ctx) error {
 		l, a := i18n.GetLanguagesInContext(*h.i18n, ctx)
 		return result.Error(h.i18n.TranslateFromError(*err, l, a))
 	}
-	return result.SuccessDetail(Messages.Success.Ok, res)
+	return result.SuccessDetail(Messages.Success.Ok, res.Detail)
 }
 
 func (h srv) AdminDetailByUser(ctx *fiber.Ctx) error {
@@ -310,7 +310,7 @@ func (h srv) AdminDetailByUser(ctx *fiber.Ctx) error {
 		l, a := i18n.GetLanguagesInContext(*h.i18n, ctx)
 		return result.Error(h.i18n.TranslateFromError(*err, l, a))
 	}
-	return result.SuccessDetail(Messages.Success.Ok, res)
+	return result.SuccessDetail(Messages.Success.Ok, res.Detail)
 }
 
 func (h srv) AdminDetailByBusiness(ctx *fiber.Ctx) error {
@@ -321,7 +321,7 @@ func (h srv) AdminDetailByBusiness(ctx *fiber.Ctx) error {
 		l, a := i18n.GetLanguagesInContext(*h.i18n, ctx)
 		return result.Error(h.i18n.TranslateFromError(*err, l, a))
 	}
-	return result.SuccessDetail(Messages.Success.Ok, res)
+	return result.SuccessDetail(Messages.Success.Ok, res.Detail)
 }
 
 func (h srv) GetBySelectedUser(ctx *fiber.Ctx) error {
@@ -333,7 +333,7 @@ func (h srv) GetBySelectedUser(ctx *fiber.Ctx) error {
 		l, a := i18n.GetLanguagesInContext(*h.i18n, ctx)
 		return result.Error(h.i18n.TranslateFromError(*err, l, a))
 	}
-	return result.SuccessDetail(Messages.Success.Ok, res)
+	return result.SuccessDetail(Messages.Success.Ok, res.Detail)
 }
 
 func (h srv) GetBySelectedBusiness(ctx *fiber.Ctx) error {
@@ -346,5 +346,5 @@ func (h srv) GetBySelectedBusiness(ctx *fiber.Ctx) error {
 		l, a := i18n.GetLanguagesInContext(*h.i18n, ctx)
 		return result.Error(h.i18n.TranslateFromError(*err, l, a))
 	}
-	return result.SuccessDetail(Messages.Success.Ok, res)
+	return result.SuccessDetail(Messages.Success.Ok, res.Detail)
 }
