@@ -26,6 +26,10 @@ type Commands struct {
 	NotifyTestMail     command.NotifyTestMailHandler
 	NotifyTestSms      command.NotifyTestSmsHandler
 	NotifyTestTelegram command.NotifyTestTelegramHandler
+
+	NotifySendEmail         command.NotifySendEmailHandler
+	NotifySendSms           command.NotifySendSmsHandler
+	NotifySendToAllChannels command.NotifySendToAllChannelsHandler
 }
 
 type Queries struct {

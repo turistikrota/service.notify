@@ -384,3 +384,7 @@ func (h srv) NotifyTestTelegram(ctx *fiber.Ctx) error {
 	}
 	return result.SuccessDetail(Messages.Success.Ok, res)
 }
+
+func (h srv) registerSSE(ctx *fiber.Ctx) error {
+	return nil
+}
