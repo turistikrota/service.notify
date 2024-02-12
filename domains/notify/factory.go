@@ -1,12 +1,14 @@
 package notify
 
 type Factory struct {
-	Errors Errors
+	Errors   Errors
+	Messages Messages
 }
 
 func NewFactory() Factory {
 	return Factory{
-		Errors: newErrors(),
+		Errors:   newErrors(),
+		Messages: i18nMessages,
 	}
 }
 

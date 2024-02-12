@@ -3,12 +3,15 @@ package service
 import (
 	"github.com/cilloparch/cillop/events"
 	"github.com/cilloparch/cillop/helpers/cache"
+	"github.com/cilloparch/cillop/i18np"
 	"github.com/cilloparch/cillop/validation"
+	"github.com/turistikrota/service.notify/adapters/mail"
 	"github.com/turistikrota/service.notify/app"
 	"github.com/turistikrota/service.notify/app/command"
 	"github.com/turistikrota/service.notify/app/query"
 	"github.com/turistikrota/service.notify/config"
 	"github.com/turistikrota/service.notify/domains/actor_config"
+	"github.com/turistikrota/service.notify/domains/notify"
 	"github.com/turistikrota/service.shared/db/mongo"
 )
 
@@ -18,12 +21,17 @@ type Config struct {
 	Validator   *validation.Validator
 	MongoDB     *mongo.DB
 	CacheSrv    cache.Service
+	I18n        *i18np.I18n
 }
 
 func NewApplication(cnf Config) app.Application {
 
 	actorConfigFactory := actor_config.NewFactory()
 	actorConfigRepo := actor_config.NewRepo(cnf.MongoDB.GetCollection(cnf.App.DB.ActorConfig.Collection), actorConfigFactory)
+
+	notifyFactory := notify.NewFactory()
+
+	mail := mail.New(cnf.App.Smtp)
 
 	return app.Application{
 		Commands: app.Commands{
@@ -38,6 +46,7 @@ func NewApplication(cnf Config) app.Application {
 			ActorConfigRemoveMail:     command.NewActorConfigRemoveMailHandler(actorConfigFactory, actorConfigRepo),
 			ActorConfigRemoveSms:      command.NewActorConfigRemoveSmsHandler(actorConfigFactory, actorConfigRepo),
 			ActorConfigRemoveTelegram: command.NewActorConfigRemoveTelegramHandler(actorConfigFactory, actorConfigRepo),
+			NotifyTestMail:            command.NewNotifyTestMailHandler(notifyFactory, cnf.I18n, mail),
 		},
 		Queries: app.Queries{
 			ActorConfigFilter:            query.NewActorConfigFilterHandler(actorConfigFactory, actorConfigRepo),

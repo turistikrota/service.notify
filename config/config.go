@@ -33,13 +33,13 @@ type NetGsm struct {
 	Company  string `env:"NETGSM_COMPANY"`
 }
 
-type MailGun struct {
-	FromMail string `env:"MAIL_GUN_FROM_MAIL"`
-	SmtpHost string `env:"MAIL_GUN_SMTP_HOST"`
-	SmtpPort string `env:"MAIL_GUN_SMTP_PORT"`
-	Password string `env:"MAIL_GUN_PASSWORD"`
-	Username string `env:"MAIL_GUN_USERNAME"`
-	Identity string `env:"MAIL_GUN_IDENTITY"`
+type Smtp struct {
+	Host     string `env:"SMTP_HOST"`
+	Port     int    `env:"SMTP_PORT"`
+	From     string `env:"SMTP_FROM"`
+	Sender   string `env:"SMTP_SENDER"`
+	Reply    string `env:"SMTP_REPLY"`
+	Password string `env:"SMTP_PASSWORD"`
 }
 
 type Telegram struct {
@@ -109,8 +109,8 @@ type App struct {
 	DB       struct {
 		ActorConfig MongoActorConfig
 	}
+	Smtp     Smtp
 	Adapters struct {
-		MailGun  MailGun
 		Telegram Telegram
 		NetGsm   NetGsm
 		Firebase Firebase

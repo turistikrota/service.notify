@@ -23,7 +23,6 @@ errors_auth_required_auth = "Bu işlem için kimlik doğrulaması gerekiyor."
 errors_auth_current_user = "Geçerli kullanıcı bulunamadı."
 errors_auth_admin_route = "Bu yönlendirme yalnızca yönetici kullanıcılar için kullanılabilir."
 
-# notify module
 http_success_get_by_uuid = "Bildirim detayı başarıyla alındı."
 http_success_get_all_by_recipient = "Bildirimler başarıyla alındı."
 http_success_get_all_by_channel = "Bildirimler başarıyla alındı."
@@ -46,3 +45,8 @@ http_error_required_business_select = "Bu işlem için bir işletme seçmelisini
 http_error_forbidden_business_select = "Bu işletmeye erişim izniniz yok."
 http_error_required_account_select = "Bu işlem için bir hesap seçmelisiniz."
 http_error_forbidden_account_select = "Bu hesaba erişim izniniz yok."
+
+# notify module
+notify_failed = "Bildirimler işlenirken bir hata oluştu."
+notify_test_mail_subject = "Test Bildirimi"
+notify_test_mail_content = "Bu bir test bildirimidir."

@@ -41,6 +41,7 @@ func main() {
 		CacheSrv:    cache,
 		Validator:   valid,
 		MongoDB:     mongo,
+		I18n:        i18n,
 	})
 	r := redis.New(&redis.Config{
 		Host:     cnf.Redis.Host,

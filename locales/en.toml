@@ -23,7 +23,6 @@ errors_auth_required_auth = "Authentication is required."
 errors_auth_current_user = "An error occurred while retrieving the current user."
 errors_auth_admin_route = "This route is only accessible by admins."
 
-# notify module
 http_success_get_by_uuid = "Notification retrieved successfully."
 http_success_get_all_by_recipient = "Notifications retrieved successfully."
 http_success_get_all_by_channel = "Notifications retrieved successfully."
@@ -46,3 +45,8 @@ http_error_required_business_select = "Business selection is required."
 http_error_forbidden_business_select = "You are not allowed to access this business."
 http_error_required_account_select = "Account selection is required."
 http_error_forbidden_account_select = "You are not allowed to access this account."
+
+# notify module
+notify_failed = "Failed to process notification. Please try again later. Operation: {{.Operation}}"
+notify_test_mail_subject = "Test Mail"
+notify_test_mail_content = "This is a test mail."

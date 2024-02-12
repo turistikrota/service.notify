@@ -19,7 +19,7 @@ func (h srv) UserAddMail(ctx *fiber.Ctx) error {
 	cmd.ActorUUID = current_user.Parse(ctx).UUID
 	cmd.ActorName = current_account.Parse(ctx).Name
 	cmd.ActorType = actor_config.ActorTypeUser
-	res, err := h.app.Commands.ActorConfigAddMail(ctx.Context(), cmd)
+	res, err := h.app.Commands.ActorConfigAddMail(ctx.UserContext(), cmd)
 	if err != nil {
 		l, a := i18n.GetLanguagesInContext(*h.i18n, ctx)
 		return result.Error(h.i18n.TranslateFromError(*err, l, a))
@@ -33,7 +33,7 @@ func (h srv) UserAddSms(ctx *fiber.Ctx) error {
 	cmd.ActorUUID = current_user.Parse(ctx).UUID
 	cmd.ActorName = current_account.Parse(ctx).Name
 	cmd.ActorType = actor_config.ActorTypeUser
-	res, err := h.app.Commands.ActorConfigAddSms(ctx.Context(), cmd)
+	res, err := h.app.Commands.ActorConfigAddSms(ctx.UserContext(), cmd)
 	if err != nil {
 		l, a := i18n.GetLanguagesInContext(*h.i18n, ctx)
 		return result.Error(h.i18n.TranslateFromError(*err, l, a))
@@ -47,7 +47,7 @@ func (h srv) UserAddTelegram(ctx *fiber.Ctx) error {
 	cmd.ActorUUID = current_user.Parse(ctx).UUID
 	cmd.ActorName = current_account.Parse(ctx).Name
 	cmd.ActorType = actor_config.ActorTypeUser
-	res, err := h.app.Commands.ActorConfigAddTelegram(ctx.Context(), cmd)
+	res, err := h.app.Commands.ActorConfigAddTelegram(ctx.UserContext(), cmd)
 	if err != nil {
 		l, a := i18n.GetLanguagesInContext(*h.i18n, ctx)
 		return result.Error(h.i18n.TranslateFromError(*err, l, a))
@@ -61,7 +61,7 @@ func (h srv) UserUpdateMail(ctx *fiber.Ctx) error {
 	cmd.ActorUUID = current_user.Parse(ctx).UUID
 	cmd.ActorName = current_account.Parse(ctx).Name
 	cmd.ActorType = actor_config.ActorTypeUser
-	res, err := h.app.Commands.ActorConfigUpdateMail(ctx.Context(), cmd)
+	res, err := h.app.Commands.ActorConfigUpdateMail(ctx.UserContext(), cmd)
 	if err != nil {
 		l, a := i18n.GetLanguagesInContext(*h.i18n, ctx)
 		return result.Error(h.i18n.TranslateFromError(*err, l, a))
@@ -75,7 +75,7 @@ func (h srv) UserUpdateSms(ctx *fiber.Ctx) error {
 	cmd.ActorUUID = current_user.Parse(ctx).UUID
 	cmd.ActorName = current_account.Parse(ctx).Name
 	cmd.ActorType = actor_config.ActorTypeUser
-	res, err := h.app.Commands.ActorConfigUpdateSms(ctx.Context(), cmd)
+	res, err := h.app.Commands.ActorConfigUpdateSms(ctx.UserContext(), cmd)
 	if err != nil {
 		l, a := i18n.GetLanguagesInContext(*h.i18n, ctx)
 		return result.Error(h.i18n.TranslateFromError(*err, l, a))
@@ -89,7 +89,7 @@ func (h srv) UserUpdateTelegram(ctx *fiber.Ctx) error {
 	cmd.ActorUUID = current_user.Parse(ctx).UUID
 	cmd.ActorName = current_account.Parse(ctx).Name
 	cmd.ActorType = actor_config.ActorTypeUser
-	res, err := h.app.Commands.ActorConfigUpdateTelegram(ctx.Context(), cmd)
+	res, err := h.app.Commands.ActorConfigUpdateTelegram(ctx.UserContext(), cmd)
 	if err != nil {
 		l, a := i18n.GetLanguagesInContext(*h.i18n, ctx)
 		return result.Error(h.i18n.TranslateFromError(*err, l, a))
@@ -103,7 +103,7 @@ func (h srv) UserRemoveMail(ctx *fiber.Ctx) error {
 	cmd.ActorUUID = current_user.Parse(ctx).UUID
 	cmd.ActorName = current_account.Parse(ctx).Name
 	cmd.ActorType = actor_config.ActorTypeUser
-	res, err := h.app.Commands.ActorConfigRemoveMail(ctx.Context(), cmd)
+	res, err := h.app.Commands.ActorConfigRemoveMail(ctx.UserContext(), cmd)
 	if err != nil {
 		l, a := i18n.GetLanguagesInContext(*h.i18n, ctx)
 		return result.Error(h.i18n.TranslateFromError(*err, l, a))
@@ -117,7 +117,7 @@ func (h srv) UserRemoveSms(ctx *fiber.Ctx) error {
 	cmd.ActorUUID = current_user.Parse(ctx).UUID
 	cmd.ActorName = current_account.Parse(ctx).Name
 	cmd.ActorType = actor_config.ActorTypeUser
-	res, err := h.app.Commands.ActorConfigRemoveSms(ctx.Context(), cmd)
+	res, err := h.app.Commands.ActorConfigRemoveSms(ctx.UserContext(), cmd)
 	if err != nil {
 		l, a := i18n.GetLanguagesInContext(*h.i18n, ctx)
 		return result.Error(h.i18n.TranslateFromError(*err, l, a))
@@ -131,7 +131,7 @@ func (h srv) UserRemoveTelegram(ctx *fiber.Ctx) error {
 	cmd.ActorUUID = current_user.Parse(ctx).UUID
 	cmd.ActorName = current_account.Parse(ctx).Name
 	cmd.ActorType = actor_config.ActorTypeUser
-	res, err := h.app.Commands.ActorConfigRemoveTelegram(ctx.Context(), cmd)
+	res, err := h.app.Commands.ActorConfigRemoveTelegram(ctx.UserContext(), cmd)
 	if err != nil {
 		l, a := i18n.GetLanguagesInContext(*h.i18n, ctx)
 		return result.Error(h.i18n.TranslateFromError(*err, l, a))
@@ -146,7 +146,7 @@ func (h srv) BusinessAddMail(ctx *fiber.Ctx) error {
 	cmd.ActorUUID = business.UUID
 	cmd.ActorName = business.NickName
 	cmd.ActorType = actor_config.ActorTypeBusiness
-	res, err := h.app.Commands.ActorConfigAddMail(ctx.Context(), cmd)
+	res, err := h.app.Commands.ActorConfigAddMail(ctx.UserContext(), cmd)
 	if err != nil {
 		l, a := i18n.GetLanguagesInContext(*h.i18n, ctx)
 		return result.Error(h.i18n.TranslateFromError(*err, l, a))
@@ -161,7 +161,7 @@ func (h srv) BusinessAddSms(ctx *fiber.Ctx) error {
 	cmd.ActorUUID = business.UUID
 	cmd.ActorName = business.NickName
 	cmd.ActorType = actor_config.ActorTypeBusiness
-	res, err := h.app.Commands.ActorConfigAddSms(ctx.Context(), cmd)
+	res, err := h.app.Commands.ActorConfigAddSms(ctx.UserContext(), cmd)
 	if err != nil {
 		l, a := i18n.GetLanguagesInContext(*h.i18n, ctx)
 		return result.Error(h.i18n.TranslateFromError(*err, l, a))
@@ -176,7 +176,7 @@ func (h srv) BusinessAddTelegram(ctx *fiber.Ctx) error {
 	cmd.ActorUUID = business.UUID
 	cmd.ActorName = business.NickName
 	cmd.ActorType = actor_config.ActorTypeBusiness
-	res, err := h.app.Commands.ActorConfigAddTelegram(ctx.Context(), cmd)
+	res, err := h.app.Commands.ActorConfigAddTelegram(ctx.UserContext(), cmd)
 	if err != nil {
 		l, a := i18n.GetLanguagesInContext(*h.i18n, ctx)
 		return result.Error(h.i18n.TranslateFromError(*err, l, a))
@@ -191,7 +191,7 @@ func (h srv) BusinessUpdateMail(ctx *fiber.Ctx) error {
 	cmd.ActorUUID = business.UUID
 	cmd.ActorName = business.NickName
 	cmd.ActorType = actor_config.ActorTypeBusiness
-	res, err := h.app.Commands.ActorConfigUpdateMail(ctx.Context(), cmd)
+	res, err := h.app.Commands.ActorConfigUpdateMail(ctx.UserContext(), cmd)
 	if err != nil {
 		l, a := i18n.GetLanguagesInContext(*h.i18n, ctx)
 		return result.Error(h.i18n.TranslateFromError(*err, l, a))
@@ -206,7 +206,7 @@ func (h srv) BusinessUpdateSms(ctx *fiber.Ctx) error {
 	cmd.ActorUUID = business.UUID
 	cmd.ActorName = business.NickName
 	cmd.ActorType = actor_config.ActorTypeBusiness
-	res, err := h.app.Commands.ActorConfigUpdateSms(ctx.Context(), cmd)
+	res, err := h.app.Commands.ActorConfigUpdateSms(ctx.UserContext(), cmd)
 	if err != nil {
 		l, a := i18n.GetLanguagesInContext(*h.i18n, ctx)
 		return result.Error(h.i18n.TranslateFromError(*err, l, a))
@@ -221,7 +221,7 @@ func (h srv) BusinessUpdateTelegram(ctx *fiber.Ctx) error {
 	cmd.ActorUUID = business.UUID
 	cmd.ActorName = business.NickName
 	cmd.ActorType = actor_config.ActorTypeBusiness
-	res, err := h.app.Commands.ActorConfigUpdateTelegram(ctx.Context(), cmd)
+	res, err := h.app.Commands.ActorConfigUpdateTelegram(ctx.UserContext(), cmd)
 	if err != nil {
 		l, a := i18n.GetLanguagesInContext(*h.i18n, ctx)
 		return result.Error(h.i18n.TranslateFromError(*err, l, a))
@@ -236,7 +236,7 @@ func (h srv) BusinessRemoveMail(ctx *fiber.Ctx) error {
 	cmd.ActorUUID = business.UUID
 	cmd.ActorName = business.NickName
 	cmd.ActorType = actor_config.ActorTypeBusiness
-	res, err := h.app.Commands.ActorConfigRemoveMail(ctx.Context(), cmd)
+	res, err := h.app.Commands.ActorConfigRemoveMail(ctx.UserContext(), cmd)
 	if err != nil {
 		l, a := i18n.GetLanguagesInContext(*h.i18n, ctx)
 		return result.Error(h.i18n.TranslateFromError(*err, l, a))
@@ -251,7 +251,7 @@ func (h srv) BusinessRemoveSms(ctx *fiber.Ctx) error {
 	cmd.ActorUUID = business.UUID
 	cmd.ActorName = business.NickName
 	cmd.ActorType = actor_config.ActorTypeBusiness
-	res, err := h.app.Commands.ActorConfigRemoveSms(ctx.Context(), cmd)
+	res, err := h.app.Commands.ActorConfigRemoveSms(ctx.UserContext(), cmd)
 	if err != nil {
 		l, a := i18n.GetLanguagesInContext(*h.i18n, ctx)
 		return result.Error(h.i18n.TranslateFromError(*err, l, a))
@@ -266,7 +266,7 @@ func (h srv) BusinessRemoveTelegram(ctx *fiber.Ctx) error {
 	cmd.ActorUUID = business.UUID
 	cmd.ActorName = business.NickName
 	cmd.ActorType = actor_config.ActorTypeBusiness
-	res, err := h.app.Commands.ActorConfigRemoveTelegram(ctx.Context(), cmd)
+	res, err := h.app.Commands.ActorConfigRemoveTelegram(ctx.UserContext(), cmd)
 	if err != nil {
 		l, a := i18n.GetLanguagesInContext(*h.i18n, ctx)
 		return result.Error(h.i18n.TranslateFromError(*err, l, a))
@@ -283,7 +283,7 @@ func (h srv) AdminFilter(ctx *fiber.Ctx) error {
 		FilterEntity: &filter,
 		Pagination:   &pagi,
 	}
-	res, err := h.app.Queries.ActorConfigFilter(ctx.Context(), query)
+	res, err := h.app.Queries.ActorConfigFilter(ctx.UserContext(), query)
 	if err != nil {
 		l, a := i18n.GetLanguagesInContext(*h.i18n, ctx)
 		return result.Error(h.i18n.TranslateFromError(*err, l, a))
@@ -294,7 +294,7 @@ func (h srv) AdminFilter(ctx *fiber.Ctx) error {
 func (h srv) AdminDetail(ctx *fiber.Ctx) error {
 	query := query.ActorConfigGetByUUIDQuery{}
 	h.parseParams(ctx, &query)
-	res, err := h.app.Queries.ActorConfigGetByUUID(ctx.Context(), query)
+	res, err := h.app.Queries.ActorConfigGetByUUID(ctx.UserContext(), query)
 	if err != nil {
 		l, a := i18n.GetLanguagesInContext(*h.i18n, ctx)
 		return result.Error(h.i18n.TranslateFromError(*err, l, a))
@@ -305,7 +305,7 @@ func (h srv) AdminDetail(ctx *fiber.Ctx) error {
 func (h srv) AdminDetailByUser(ctx *fiber.Ctx) error {
 	query := query.ActorConfigGetByUserNameQuery{}
 	h.parseParams(ctx, &query)
-	res, err := h.app.Queries.ActorConfigGetByUserName(ctx.Context(), query)
+	res, err := h.app.Queries.ActorConfigGetByUserName(ctx.UserContext(), query)
 	if err != nil {
 		l, a := i18n.GetLanguagesInContext(*h.i18n, ctx)
 		return result.Error(h.i18n.TranslateFromError(*err, l, a))
@@ -316,7 +316,7 @@ func (h srv) AdminDetailByUser(ctx *fiber.Ctx) error {
 func (h srv) AdminDetailByBusiness(ctx *fiber.Ctx) error {
 	query := query.ActorConfigGetByBusinessUUIDQuery{}
 	h.parseParams(ctx, &query)
-	res, err := h.app.Queries.ActorConfigGetByBusinessUUID(ctx.Context(), query)
+	res, err := h.app.Queries.ActorConfigGetByBusinessUUID(ctx.UserContext(), query)
 	if err != nil {
 		l, a := i18n.GetLanguagesInContext(*h.i18n, ctx)
 		return result.Error(h.i18n.TranslateFromError(*err, l, a))
@@ -328,7 +328,7 @@ func (h srv) GetBySelectedUser(ctx *fiber.Ctx) error {
 	query := query.ActorConfigGetByUserQuery{}
 	query.UserName = current_account.Parse(ctx).Name
 	query.UserUUID = current_user.Parse(ctx).UUID
-	res, err := h.app.Queries.ActorConfigGetByUser(ctx.Context(), query)
+	res, err := h.app.Queries.ActorConfigGetByUser(ctx.UserContext(), query)
 	if err != nil {
 		l, a := i18n.GetLanguagesInContext(*h.i18n, ctx)
 		return result.Error(h.i18n.TranslateFromError(*err, l, a))
@@ -341,10 +341,22 @@ func (h srv) GetBySelectedBusiness(ctx *fiber.Ctx) error {
 	business := current_business.Parse(ctx)
 	query.BusinessName = business.NickName
 	query.BusinessUUID = business.UUID
-	res, err := h.app.Queries.ActorConfigGetByBusiness(ctx.Context(), query)
+	res, err := h.app.Queries.ActorConfigGetByBusiness(ctx.UserContext(), query)
 	if err != nil {
 		l, a := i18n.GetLanguagesInContext(*h.i18n, ctx)
 		return result.Error(h.i18n.TranslateFromError(*err, l, a))
 	}
 	return result.SuccessDetail(Messages.Success.Ok, res.Detail)
+}
+
+func (h srv) NotifyTestEmail(ctx *fiber.Ctx) error {
+	cmd := command.NotifyTestMailCmd{}
+	h.parseBody(ctx, &cmd)
+	l, a := i18n.GetLanguagesInContext(*h.i18n, ctx)
+	cmd.Locale = l
+	res, err := h.app.Commands.NotifyTestMail(ctx.UserContext(), cmd)
+	if err != nil {
+		return result.Error(h.i18n.TranslateFromError(*err, l, a))
+	}
+	return result.SuccessDetail(Messages.Success.Ok, res)
 }
