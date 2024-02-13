@@ -24,3 +24,13 @@ func (h srv) OnBusinessCreated(data []byte) {
 	}
 	h.app.Commands.ActorConfigCreateBusiness(context.TODO(), cmd)
 }
+
+func (h srv) SendEmailToActor(data []byte) {}
+
+func (h srv) SendSmsToActor(data []byte) {}
+
+func (h srv) SendSpecialEmail(data []byte) {}
+
+func (h srv) SendSpecialSms(data []byte) {}
+
+func (h srv) SendNotification(data []byte) {}

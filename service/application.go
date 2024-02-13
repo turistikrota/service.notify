@@ -55,6 +55,8 @@ func NewApplication(cnf Config) app.Application {
 			NotifyTestTelegram:        command.NewNotifyTestTelegramHandler(notifyFactory, cnf.I18n, telegram),
 			NotifySendEmail:           command.NewNotifySendEmailHandler(notifyFactory, actorConfigRepo, cnf.I18n, mail),
 			NotifySendSms:             command.NewNotifySendSmsHandler(notifyFactory, actorConfigRepo, cnf.I18n, sms),
+			NotifySendSpecialEmail:    command.NewNotifySendSpecialEmailHandler(notifyFactory, cnf.I18n, mail),
+			NotifySendSpecialSms:      command.NewNotifySendSpecialSmsHandler(notifyFactory, cnf.I18n, sms),
 			NotifySendToAllChannels:   command.NewNotifySendToAllChannelsHandler(notifyFactory, actorConfigRepo, cnf.I18n, sms, mail, telegram),
 		},
 		Queries: app.Queries{

@@ -29,6 +29,8 @@ type Commands struct {
 
 	NotifySendEmail         command.NotifySendEmailHandler
 	NotifySendSms           command.NotifySendSmsHandler
+	NotifySendSpecialEmail  command.NotifySendSpecialEmailHandler
+	NotifySendSpecialSms    command.NotifySendSpecialSmsHandler
 	NotifySendToAllChannels command.NotifySendToAllChannelsHandler
 }
 

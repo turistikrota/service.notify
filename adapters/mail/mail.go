@@ -68,7 +68,7 @@ func (s *srv) SendText(cnf SendConfig) error {
 
 func (s *srv) SendWithTemplate(cnf SendWithTemplateConfig) error {
 	dir := assets.EmbedMailTemplate()
-	t := template.Must(template.ParseFS(dir, fmt.Sprintf("mails/%s.html", cnf.Template)))
+	t := template.Must(template.ParseFS(dir, fmt.Sprintf("mail/%s.html", cnf.Template)))
 	var tpl bytes.Buffer
 	t.Execute(&tpl, cnf.Data)
 	body := tpl.String()
