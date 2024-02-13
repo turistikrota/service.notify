@@ -23,6 +23,7 @@ type Repository interface {
 	GetByBusiness(ctx context.Context, actor WithActor) (*Entity, *i18np.Error)
 	GetByUserName(ctx context.Context, name string) (*Entity, *i18np.Error)
 	GetByBusinessUUID(ctx context.Context, uuid string) (*Entity, *i18np.Error)
+	GetByActorName(ctx context.Context, name string) (*Entity, *i18np.Error)
 	Filter(ctx context.Context, filter FilterEntity, listConfig list.Config) (*list.Result[*Entity], *i18np.Error)
 
 	AddTelegram(ctx context.Context, actor Actor, credential TelegramCredential) *i18np.Error
@@ -167,6 +168,20 @@ func (r *repo) GetByUUID(ctx context.Context, uuid string) (*Entity, *i18np.Erro
 	}
 	filter := bson.M{
 		fields.UUID: id,
+	}
+	e, exist, err := r.helper.GetFilter(ctx, filter)
+	if err != nil {
+		return nil, r.factory.Errors.Failed("get")
+	}
+	if !exist {
+		return nil, r.factory.Errors.NotFound()
+	}
+	return *e, nil
+}
+
+func (r *repo) GetByActorName(ctx context.Context, name string) (*Entity, *i18np.Error) {
+	filter := bson.M{
+		actorField(actorFields.Name): name,
 	}
 	e, exist, err := r.helper.GetFilter(ctx, filter)
 	if err != nil {
