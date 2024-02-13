@@ -30,5 +30,11 @@ func New(config Config) server.Server {
 func (s srv) Listen() error {
 	s.engine.Subscribe(s.topics.Account.Created, s.OnAccountCreated)
 	s.engine.Subscribe(s.topics.Business.Created, s.OnBusinessCreated)
+	s.engine.Subscribe(s.topics.Notify.SendEmailToActor, s.SendEmailToActor)
+	s.engine.Subscribe(s.topics.Notify.SendSmsToActor, s.SendSmsToActor)
+	s.engine.Subscribe(s.topics.Notify.SendSpecialEmail, s.SendSpecialEmail)
+	s.engine.Subscribe(s.topics.Notify.SendSpecialSms, s.SendSpecialSms)
+	s.engine.Subscribe(s.topics.Notify.SendNotification, s.SendNotification)
+	s.engine.Subscribe(s.topics.Notify.SendPush, s.SendPush)
 	return nil
 }

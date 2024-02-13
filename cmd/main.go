@@ -35,14 +35,6 @@ func main() {
 		Password: cnf.CacheRedis.Pw,
 		DB:       cnf.CacheRedis.Db,
 	})
-	app := service.NewApplication(service.Config{
-		App:         cnf,
-		EventEngine: eventEngine,
-		CacheSrv:    cache,
-		Validator:   valid,
-		MongoDB:     mongo,
-		I18n:        i18n,
-	})
 	r := redis.New(&redis.Config{
 		Host:     cnf.Redis.Host,
 		Port:     cnf.Redis.Port,
@@ -60,6 +52,15 @@ func main() {
 		TokenSrv:    tknSrv,
 		Topic:       cnf.Session.Topic,
 		Project:     cnf.TokenSrv.Project,
+	})
+	app := service.NewApplication(service.Config{
+		App:         cnf,
+		EventEngine: eventEngine,
+		CacheSrv:    cache,
+		Validator:   valid,
+		MongoDB:     mongo,
+		I18n:        i18n,
+		SessionSrv:  session.Service,
 	})
 	http := http.New(http.Config{
 		Env:         cnf,

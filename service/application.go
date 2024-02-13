@@ -6,6 +6,7 @@ import (
 	"github.com/cilloparch/cillop/i18np"
 	"github.com/cilloparch/cillop/validation"
 	"github.com/turistikrota/service.notify/adapters/mail"
+	"github.com/turistikrota/service.notify/adapters/push"
 	"github.com/turistikrota/service.notify/adapters/sms"
 	"github.com/turistikrota/service.notify/adapters/telegram"
 	"github.com/turistikrota/service.notify/app"
@@ -14,6 +15,7 @@ import (
 	"github.com/turistikrota/service.notify/config"
 	"github.com/turistikrota/service.notify/domains/actor_config"
 	"github.com/turistikrota/service.notify/domains/notify"
+	"github.com/turistikrota/service.shared/auth/session"
 	"github.com/turistikrota/service.shared/db/mongo"
 )
 
@@ -24,6 +26,7 @@ type Config struct {
 	MongoDB     *mongo.DB
 	CacheSrv    cache.Service
 	I18n        *i18np.I18n
+	SessionSrv  session.Service
 }
 
 func NewApplication(cnf Config) app.Application {
@@ -36,6 +39,7 @@ func NewApplication(cnf Config) app.Application {
 	mail := mail.New(cnf.App.Smtp)
 	sms := sms.New(cnf.App.Adapters.NetGsm)
 	telegram := telegram.New(cnf.App.Adapters.Telegram)
+	push := push.New(cnf.App.Firebase)
 
 	return app.Application{
 		Commands: app.Commands{
@@ -53,6 +57,7 @@ func NewApplication(cnf Config) app.Application {
 			NotifyTestMail:            command.NewNotifyTestMailHandler(notifyFactory, cnf.I18n, mail),
 			NotifyTestSms:             command.NewNotifyTestSmsHandler(notifyFactory, cnf.I18n, sms),
 			NotifyTestTelegram:        command.NewNotifyTestTelegramHandler(notifyFactory, cnf.I18n, telegram),
+			NotifySendPush:            command.NewNotifySendPushHandler(notifyFactory, cnf.I18n, push, cnf.SessionSrv),
 			NotifySendEmail:           command.NewNotifySendEmailHandler(notifyFactory, actorConfigRepo, cnf.I18n, mail),
 			NotifySendSms:             command.NewNotifySendSmsHandler(notifyFactory, actorConfigRepo, cnf.I18n, sms),
 			NotifySendSpecialEmail:    command.NewNotifySendSpecialEmailHandler(notifyFactory, cnf.I18n, mail),

@@ -94,9 +94,19 @@ type BusinessTopics struct {
 	Created string `env:"STREAMING_TOPIC_BUSINESS_CREATED"`
 }
 
+type NotifyTopics struct {
+	SendEmailToActor string `env:"STREAMING_TOPIC_NOTIFY_SEND_EMAIL_TO_ACTOR"`
+	SendSmsToActor   string `env:"STREAMING_TOPIC_NOTIFY_SEND_SMS_TO_ACTOR"`
+	SendSpecialEmail string `env:"STREAMING_TOPIC_NOTIFY_SEND_SPECIAL_EMAIL"`
+	SendSpecialSms   string `env:"STREAMING_TOPIC_NOTIFY_SEND_SPECIAL_SMS"`
+	SendNotification string `env:"STREAMING_TOPIC_NOTIFY_SEND_NOTIFICATION"`
+	SendPush         string `env:"STREAMING_TOPIC_NOTIFY_SEND_PUSH"`
+}
+
 type Topics struct {
 	Account  AccountTopics
 	Business BusinessTopics
+	Notify   NotifyTopics
 }
 
 type Nats struct {
