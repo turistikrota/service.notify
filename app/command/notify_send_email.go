@@ -59,12 +59,14 @@ func NewNotifySendEmailHandler(factory notify.Factory, actorConfigRepo actor_con
 		if len(config.Mail) == 0 {
 			return nil, factory.Errors.NotMailConfigured()
 		}
-		for _, mailConfig := range config.Mail {
-			err := sender(cmd, mailConfig.Email)
-			if err != nil {
-				return nil, factory.Errors.Failed(err.Error())
+		go func() {
+			for _, mailConfig := range config.Mail {
+				err := sender(cmd, mailConfig.Email)
+				if err != nil {
+					return
+				}
 			}
-		}
+		}()
 		return &NotifySendEmailRes{}, nil
 	}
 }

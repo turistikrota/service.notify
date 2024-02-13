@@ -34,16 +34,18 @@ func NewNotifySendSmsHandler(factory notify.Factory, actorConfigRepo actor_confi
 		if cmd.Translate {
 			txt = i18n.Translate(txt, cmd.Locale)
 		}
-		for _, phone := range config.SMS {
-			err := srv.Send(ctx, sms.SendConfig{
-				Phone: phone.CountryCode + phone.Phone,
-				Text:  txt,
-				Lang:  cmd.Locale,
-			})
-			if err != nil {
-				return nil, factory.Errors.Failed(err.Error())
+		go func() {
+			for _, phone := range config.SMS {
+				err := srv.Send(ctx, sms.SendConfig{
+					Phone: phone.CountryCode + phone.Phone,
+					Text:  txt,
+					Lang:  cmd.Locale,
+				})
+				if err != nil {
+					return
+				}
 			}
-		}
+		}()
 		return &NotifySendSmsRes{}, nil
 	}
 }
