@@ -13,15 +13,9 @@ type Application struct {
 type Commands struct {
 	ActorConfigCreateUser     command.ActorConfigCreateUserHandler
 	ActorConfigCreateBusiness command.ActorConfigCreateBusinessHandler
-	ActorConfigAddMail        command.ActorConfigAddMailHandler
-	ActorConfigAddSms         command.ActorConfigAddSmsHandler
-	ActorConfigAddTelegram    command.ActorConfigAddTelegramHandler
-	ActorConfigUpdateMail     command.ActorConfigUpdateMailHandler
-	ActorConfigUpdateSms      command.ActorConfigUpdateSmsHandler
-	ActorConfigUpdateTelegram command.ActorConfigUpdateTelegramHandler
-	ActorConfigRemoveMail     command.ActorConfigRemoveMailHandler
-	ActorConfigRemoveSms      command.ActorConfigRemoveSmsHandler
-	ActorConfigRemoveTelegram command.ActorConfigRemoveTelegramHandler
+	ActorConfigAdd            command.ActorConfigAddHandler
+	ActorConfigUpdate         command.ActorConfigUpdateHandler
+	ActorConfigRemove         command.ActorConfigRemoveHandler
 
 	NotifyTestMail     command.NotifyTestMailHandler
 	NotifyTestSms      command.NotifyTestSmsHandler

@@ -4,7 +4,7 @@ go 1.20
 
 require (
 	firebase.google.com/go v3.13.0+incompatible
-	github.com/cilloparch/cillop v0.0.9
+	github.com/cilloparch/cillop v0.1.0
 	github.com/goccy/go-json v0.10.2
 	github.com/gofiber/fiber/v2 v2.48.0
 	github.com/turistikrota/service.shared v0.1.4

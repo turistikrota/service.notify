@@ -64,6 +64,7 @@ func (h srv) Listen() error {
 		Host:        h.config.Http.Host,
 		Port:        h.config.Http.Port,
 		I18n:        h.i18n,
+		Debug:       true,
 		AcceptLangs: []string{},
 		CreateHandler: func(router fiber.Router) fiber.Router {
 			router.Use(h.cors(), h.deviceUUID())
@@ -71,28 +72,16 @@ func (h srv) Listen() error {
 			// business routes
 			business := router.Group("/business", h.rateLimit(), h.currentUserAccess(), h.requiredAccess(), h.currentAccountAccess())
 			business.Get("/", h.currentBusinessAccess(config.Roles.ActorConfig.Super, config.Roles.ActorConfig.View), h.wrapWithTimeout(h.GetBySelectedBusiness))
-			business.Post("/mail", h.currentBusinessAccess(config.Roles.ActorConfig.Super, config.Roles.ActorConfig.AddMail), h.wrapWithTimeout(h.BusinessAddMail))
-			business.Post("/sms", h.currentBusinessAccess(config.Roles.ActorConfig.Super, config.Roles.ActorConfig.AddSms), h.wrapWithTimeout(h.BusinessAddSms))
-			business.Post("/telegram", h.currentBusinessAccess(config.Roles.ActorConfig.Super, config.Roles.ActorConfig.AddTelegram), h.wrapWithTimeout(h.BusinessAddTelegram))
-			business.Put("/mail", h.currentBusinessAccess(config.Roles.ActorConfig.Super, config.Roles.ActorConfig.EditMail), h.wrapWithTimeout(h.BusinessUpdateMail))
-			business.Put("/sms", h.currentBusinessAccess(config.Roles.ActorConfig.Super, config.Roles.ActorConfig.EditSms), h.wrapWithTimeout(h.BusinessUpdateSms))
-			business.Put("/telegram", h.currentBusinessAccess(config.Roles.ActorConfig.Super, config.Roles.ActorConfig.EditTelegram), h.wrapWithTimeout(h.BusinessUpdateTelegram))
-			business.Patch("/mail", h.currentBusinessAccess(config.Roles.ActorConfig.Super, config.Roles.ActorConfig.RemoveMail), h.wrapWithTimeout(h.BusinessRemoveMail))
-			business.Patch("/sms", h.currentBusinessAccess(config.Roles.ActorConfig.Super, config.Roles.ActorConfig.RemoveSms), h.wrapWithTimeout(h.BusinessRemoveSms))
-			business.Patch("/telegram", h.currentBusinessAccess(config.Roles.ActorConfig.Super, config.Roles.ActorConfig.RemoveTelegram), h.wrapWithTimeout(h.BusinessRemoveTelegram))
+			business.Post("/config", h.currentBusinessAccess(config.Roles.ActorConfig.Super, config.Roles.ActorConfig.Add), h.wrapWithTimeout(h.BusinessConfigAdd))
+			business.Put("/config", h.currentBusinessAccess(config.Roles.ActorConfig.Super, config.Roles.ActorConfig.Edit), h.wrapWithTimeout(h.BusinessConfigUpdate))
+			business.Patch("/config", h.currentBusinessAccess(config.Roles.ActorConfig.Super, config.Roles.ActorConfig.Remove), h.wrapWithTimeout(h.BusinessConfigRemove))
 
 			// user routes
 			user := router.Group("/user", h.rateLimit(), h.currentUserAccess(), h.requiredAccess(), h.currentAccountAccess())
 			user.Get("/", h.wrapWithTimeout(h.GetBySelectedUser))
-			user.Post("/mail", h.wrapWithTimeout(h.UserAddMail))
-			user.Post("/sms", h.wrapWithTimeout(h.UserAddSms))
-			user.Post("/telegram", h.wrapWithTimeout(h.UserAddTelegram))
-			user.Put("/mail", h.wrapWithTimeout(h.UserUpdateMail))
-			user.Put("/sms", h.wrapWithTimeout(h.UserUpdateSms))
-			user.Put("/telegram", h.wrapWithTimeout(h.UserUpdateTelegram))
-			user.Patch("/mail", h.wrapWithTimeout(h.UserRemoveMail))
-			user.Patch("/sms", h.wrapWithTimeout(h.UserRemoveSms))
-			user.Patch("/telegram", h.wrapWithTimeout(h.UserRemoveTelegram))
+			user.Post("/config", h.wrapWithTimeout(h.UserConfigAdd))
+			user.Put("/config", h.wrapWithTimeout(h.UserConfigUpdate))
+			user.Patch("/config", h.wrapWithTimeout(h.UserConfigRemove))
 
 			// admin routes
 			admin := router.Group("/admin", h.currentUserAccess(), h.requiredAccess())
