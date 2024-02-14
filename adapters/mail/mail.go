@@ -3,7 +3,6 @@ package mail
 import (
 	"bytes"
 	"fmt"
-	"log"
 	"text/template"
 
 	"github.com/turistikrota/service.notify/assets"
@@ -29,7 +28,7 @@ type Service interface {
 }
 
 type srv struct {
-	client *smtp_mail.SMTPClient
+	server *smtp_mail.SMTPServer
 	config config.Smtp
 }
 
@@ -41,17 +40,21 @@ func New(cnf config.Smtp) Service {
 	server.Password = cnf.Password
 	server.Encryption = smtp_mail.EncryptionSTARTTLS
 	server.Authentication = smtp_mail.AuthLogin
-	smtpClient, err := server.Connect()
-	if err != nil {
-		log.Fatal(err)
-	}
 	return &srv{
-		client: smtpClient,
+		server: server,
 		config: cnf,
 	}
 }
 
+func (s *srv) createClient() (*smtp_mail.SMTPClient, error) {
+	return s.server.Connect()
+}
+
 func (s *srv) SendText(cnf SendConfig) error {
+	client, err := s.createClient()
+	if err != nil {
+		return err
+	}
 	email := smtp_mail.NewMSG()
 	email.SetFrom(s.config.From)
 	email.AddTo(cnf.To)
@@ -59,7 +62,7 @@ func (s *srv) SendText(cnf SendConfig) error {
 	email.SetSender(s.config.Sender)
 	email.SetReplyTo(s.config.Reply)
 	email.AddAlternative(smtp_mail.TextPlain, cnf.Message)
-	err := email.Send(s.client)
+	err = email.Send(client)
 	if err != nil {
 		return err
 	}
@@ -67,6 +70,10 @@ func (s *srv) SendText(cnf SendConfig) error {
 }
 
 func (s *srv) SendWithTemplate(cnf SendWithTemplateConfig) error {
+	client, err := s.createClient()
+	if err != nil {
+		return err
+	}
 	dir := assets.EmbedMailTemplate()
 	t := template.Must(template.ParseFS(dir, fmt.Sprintf("mail/%s.html", cnf.Template)))
 	var tpl bytes.Buffer
@@ -79,7 +86,7 @@ func (s *srv) SendWithTemplate(cnf SendWithTemplateConfig) error {
 	email.SetSender(s.config.Sender)
 	email.SetReplyTo(s.config.Reply)
 	email.SetBody(smtp_mail.TextHTML, body)
-	if err := email.Send(s.client); err != nil {
+	if err = email.Send(client); err != nil {
 		return err
 	}
 	return nil
