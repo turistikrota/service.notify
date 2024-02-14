@@ -151,10 +151,10 @@ func (h srv) AdminDetailByBusiness(ctx *fiber.Ctx) error {
 }
 
 func (h srv) GetBySelectedUser(ctx *fiber.Ctx) error {
-	query := query.ActorConfigGetByUserQuery{}
+	query := query.ActorConfigGetOrCreateByUserQuery{}
 	query.UserName = current_account.Parse(ctx).Name
 	query.UserUUID = current_user.Parse(ctx).UUID
-	res, err := h.app.Queries.ActorConfigGetByUser(ctx.UserContext(), query)
+	res, err := h.app.Queries.ActorConfigGetOrCreateByUser(ctx.UserContext(), query)
 	if err != nil {
 		l, a := i18n.ParseLocales(ctx)
 		return result.Error(h.i18n.TranslateFromError(*err, l, a))
@@ -163,11 +163,11 @@ func (h srv) GetBySelectedUser(ctx *fiber.Ctx) error {
 }
 
 func (h srv) GetBySelectedBusiness(ctx *fiber.Ctx) error {
-	query := query.ActorConfigGetByBusinessQuery{}
+	query := query.ActorConfigGetOrCreateByBusinessQuery{}
 	business := current_business.Parse(ctx)
 	query.BusinessName = business.NickName
 	query.BusinessUUID = business.UUID
-	res, err := h.app.Queries.ActorConfigGetByBusiness(ctx.UserContext(), query)
+	res, err := h.app.Queries.ActorConfigGetOrCreateByBusiness(ctx.UserContext(), query)
 	if err != nil {
 		l, a := i18n.ParseLocales(ctx)
 		return result.Error(h.i18n.TranslateFromError(*err, l, a))
@@ -209,8 +209,4 @@ func (h srv) NotifyTestTelegram(ctx *fiber.Ctx) error {
 		return result.Error(h.i18n.TranslateFromError(*err, l, a))
 	}
 	return result.SuccessDetail(Messages.Success.Ok, res)
-}
-
-func (h srv) registerSSE(ctx *fiber.Ctx) error {
-	return nil
 }

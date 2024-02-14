@@ -30,10 +30,12 @@ type Commands struct {
 }
 
 type Queries struct {
-	ActorConfigFilter            query.ActorConfigFilterHandler
-	ActorConfigGetByBusinessUUID query.ActorConfigGetByBusinessUUIDHandler
-	ActorConfigGetByBusiness     query.ActorConfigGetByBusinessHandler
-	ActorConfigGetByUserName     query.ActorConfigGetByUserNameHandler
-	ActorConfigGetByUser         query.ActorConfigGetByUserHandler
-	ActorConfigGetByUUID         query.ActorConfigGetByUUIDHandler
+	ActorConfigFilter                query.ActorConfigFilterHandler
+	ActorConfigGetByBusinessUUID     query.ActorConfigGetByBusinessUUIDHandler
+	ActorConfigGetByBusiness         query.ActorConfigGetByBusinessHandler
+	ActorConfigGetByUserName         query.ActorConfigGetByUserNameHandler
+	ActorConfigGetByUser             query.ActorConfigGetByUserHandler
+	ActorConfigGetByUUID             query.ActorConfigGetByUUIDHandler
+	ActorConfigGetOrCreateByBusiness query.ActorConfigGetOrCreateByBusinessHandler
+	ActorConfigGetOrCreateByUser     query.ActorConfigGetOrCreateByUserHandler
 }

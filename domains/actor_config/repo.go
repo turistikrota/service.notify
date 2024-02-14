@@ -21,7 +21,9 @@ type Repository interface {
 	GetByUUID(ctx context.Context, uuid string) (*Entity, *i18np.Error)
 	GetByUser(ctx context.Context, actor WithActor) (*Entity, *i18np.Error)
 	GetByBusiness(ctx context.Context, actor WithActor) (*Entity, *i18np.Error)
+	GetByBusinessOrCreate(ctx context.Context, actor WithActor) (*Entity, *i18np.Error)
 	GetByUserName(ctx context.Context, name string) (*Entity, *i18np.Error)
+	GetByUserOrCreate(ctx context.Context, actor WithActor) (*Entity, *i18np.Error)
 	GetByBusinessUUID(ctx context.Context, uuid string) (*Entity, *i18np.Error)
 	GetByActorName(ctx context.Context, name string) (*Entity, *i18np.Error)
 	Filter(ctx context.Context, filter FilterEntity, listConfig list.Config) (*list.Result[*Entity], *i18np.Error)
@@ -146,6 +148,25 @@ func (r *repo) GetByBusiness(ctx context.Context, actor WithActor) (*Entity, *i1
 	return *e, nil
 }
 
+func (r *repo) GetByBusinessOrCreate(ctx context.Context, actor WithActor) (*Entity, *i18np.Error) {
+	e, err := r.GetByBusiness(ctx, actor)
+	if err != nil {
+		if err.Key != r.factory.Errors.NotFound().Key {
+			return nil, err
+		}
+		e = r.factory.New(Actor{
+			UUID: actor.UUID,
+			Name: actor.Name,
+			Type: ActorTypeBusiness,
+		})
+		err = r.Create(ctx, e)
+		if err != nil {
+			return nil, err
+		}
+	}
+	return e, nil
+}
+
 func (r *repo) GetByBusinessUUID(ctx context.Context, uuid string) (*Entity, *i18np.Error) {
 	filter := bson.M{
 		actorField(actorFields.UUID): uuid,
@@ -222,6 +243,25 @@ func (r *repo) GetByUserName(ctx context.Context, name string) (*Entity, *i18np.
 		return nil, r.factory.Errors.NotFound()
 	}
 	return *e, nil
+}
+
+func (r *repo) GetByUserOrCreate(ctx context.Context, actor WithActor) (*Entity, *i18np.Error) {
+	e, err := r.GetByUserName(ctx, actor.Name)
+	if err != nil {
+		if err.Key != r.factory.Errors.NotFound().Key {
+			return nil, err
+		}
+		e = r.factory.New(Actor{
+			Name: actor.Name,
+			UUID: actor.UUID,
+			Type: ActorTypeUser,
+		})
+		err = r.Create(ctx, e)
+		if err != nil {
+			return nil, err
+		}
+	}
+	return e, nil
 }
 
 func (r *repo) RemoveMail(ctx context.Context, actor Actor, credentialName string) *i18np.Error {
