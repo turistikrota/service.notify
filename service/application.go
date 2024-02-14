@@ -59,12 +59,14 @@ func NewApplication(cnf Config) app.Application {
 			NotifySendToAllChannels:   command.NewNotifySendToAllChannelsHandler(notifyFactory, actorConfigRepo, cnf.I18n, sms, mail, telegram),
 		},
 		Queries: app.Queries{
-			ActorConfigFilter:            query.NewActorConfigFilterHandler(actorConfigFactory, actorConfigRepo),
-			ActorConfigGetByBusinessUUID: query.NewActorConfigGetByBusinessUUIDHandler(actorConfigFactory, actorConfigRepo),
-			ActorConfigGetByBusiness:     query.NewActorConfigGetByBusinessHandler(actorConfigFactory, actorConfigRepo),
-			ActorConfigGetByUserName:     query.NewActorConfigGetByUserNameHandler(actorConfigFactory, actorConfigRepo),
-			ActorConfigGetByUser:         query.NewActorConfigGetByUserHandler(actorConfigFactory, actorConfigRepo),
-			ActorConfigGetByUUID:         query.NewActorConfigGetByUUIDHandler(actorConfigFactory, actorConfigRepo),
+			ActorConfigFilter:                query.NewActorConfigFilterHandler(actorConfigFactory, actorConfigRepo),
+			ActorConfigGetByBusinessUUID:     query.NewActorConfigGetByBusinessUUIDHandler(actorConfigFactory, actorConfigRepo),
+			ActorConfigGetByBusiness:         query.NewActorConfigGetByBusinessHandler(actorConfigFactory, actorConfigRepo),
+			ActorConfigGetByUserName:         query.NewActorConfigGetByUserNameHandler(actorConfigFactory, actorConfigRepo),
+			ActorConfigGetByUser:             query.NewActorConfigGetByUserHandler(actorConfigFactory, actorConfigRepo),
+			ActorConfigGetByUUID:             query.NewActorConfigGetByUUIDHandler(actorConfigFactory, actorConfigRepo),
+			ActorConfigGetOrCreateByBusiness: query.NewActorConfigGetOrCreateByBusinessHandler(actorConfigFactory, actorConfigRepo),
+			ActorConfigGetOrCreateByUser:     query.NewActorConfigGetOrCreateByUserHandler(actorConfigFactory, actorConfigRepo),
 		},
 	}
 }
