@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Your Verification Code</title>
+    <style>
+      body,
+      div,
+      p,
+      a,
+      img,
+      ul,
+      li {
+        margin: 0;
+        padding: 0;
+        border: 0;
+        font-size: 100%;
+        font-family: Arial, sans-serif;
+        vertical-align: baseline;
+        line-height: 1.5;
+      }
+      @media only screen and (max-width: 600px) {
+        .container {
+          width: 100% !important;
+        }
+        .content {
+          padding: 20px;
+        }
+      }
+    </style>
+  </head>
+  <body style="background-color: #f8f8f8">
+    <div class="container" style="max-width: 600px; margin: 0 auto">
+      <div
+        class="content"
+        style="
+          padding: 40px;
+          background-color: #ffffff;
+          border-top: 10px solid orange;
+          border-bottom-left-radius: 5px;
+          border-bottom-right-radius: 5px;
+        "
+      >
+        <div class="logo" style="text-align: left">
+          <img
+            src="https://s3.turistikrota.com/logo/horizontal.png"
+            alt="Logo"
+            style="max-width: 200px"
+          />
+        </div>
+        <p style="margin-top: 20px; margin-bottom: 20px">Hello,</p>
+        <p>
+          You can use the following 4-digit verification code to verify your
+          account:
+        </p>
+        <h3
+          style="
+            text-align: center;
+            font-size: 32px;
+            margin: 20px 0;
+            padding: 10px;
+            background-color: #f8f8f8;
+            border-radius: 5px;
+            letter-spacing: 10px;
+          "
+        >
+          {{ .Code }}
+        </h3>
+        <p>You can verify your account using this code.</p>
+        <p>If you have not done this, please contact us.</p>
+      </div>
+    </div>
+    <div
+      class="footer"
+      style="text-align: center; font-size: 12px; padding: 20px"
+    >
+      <p>© 2023 Turistikrota. All Rights Reserved.</p>
+    </div>
+  </body>
+</html>
