@@ -333,6 +333,7 @@ func (r *repo) UpdateMail(ctx context.Context, actor Actor, credential MailCrede
 	}
 	update := bson.M{
 		"$set": bson.M{
+			mailFieldInArray(mailFields.Name):  credential.Name,
 			mailFieldInArray(mailFields.Email): credential.Email,
 			fields.UpdatedAt:                   time.Now(),
 		},
@@ -349,6 +350,7 @@ func (r *repo) UpdateSMS(ctx context.Context, actor Actor, credential SMSCredent
 	}
 	update := bson.M{
 		"$set": bson.M{
+			smsFieldInArray(smsFields.Name):        credential.Name,
 			smsFieldInArray(smsFields.Phone):       credential.Phone,
 			smsFieldInArray(smsFields.CountryCode): credential.CountryCode,
 			fields.UpdatedAt:                       time.Now(),
@@ -366,6 +368,7 @@ func (r *repo) UpdateTelegram(ctx context.Context, actor Actor, credential Teleg
 	}
 	update := bson.M{
 		"$set": bson.M{
+			telegramFieldInArray(telegramFields.Name):   credential.Name,
 			telegramFieldInArray(telegramFields.ChatID): credential.ChatID,
 			fields.UpdatedAt: time.Now(),
 		},
