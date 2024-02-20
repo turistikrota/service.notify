@@ -13,11 +13,13 @@ import (
 )
 
 type NotifySendToAllChannelsCmd struct {
-	ActorName string `json:"actorName"`
-	Subject   string `json:"subject"`
-	Content   string `json:"content"`
-	Locale    string `json:"locale"`
-	Translate bool   `json:"translate"`
+	ActorName    string `json:"actorName"`
+	Subject      string `json:"subject"`
+	Content      string `json:"content"`
+	Locale       string `json:"locale"`
+	Template     string `json:"template,omitempty"`
+	TemplateData any    `json:"templateData,omitempty"`
+	Translate    bool   `json:"translate"`
 }
 
 type NotifySendToAllChannelsRes struct{}
@@ -50,11 +52,24 @@ func NewNotifySendToAllChannelsHandler(factory notify.Factory, actorConfigRepo a
 		}()
 		go func() {
 			for _, cnf := range config.Mail {
-				err := mailSrv.SendText(mail.SendConfig{
-					To:      cnf.Email,
-					Subject: subject,
-					Message: content,
-				})
+				var err error
+				if cmd.Template != "" {
+					err = mailSrv.SendWithTemplate(mail.SendWithTemplateConfig{
+						SendConfig: mail.SendConfig{
+							To:      cnf.Email,
+							Subject: subject,
+							Message: content,
+						},
+						Template: cmd.Template,
+						Data:     cmd.TemplateData,
+					})
+				} else {
+					err = mailSrv.SendText(mail.SendConfig{
+						To:      cnf.Email,
+						Subject: subject,
+						Message: content,
+					})
+				}
 				if err != nil {
 					return
 				}
