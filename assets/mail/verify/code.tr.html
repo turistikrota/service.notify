@@ -67,10 +67,42 @@
         >
           {{ .Code }}
         </h3>
-        <p>Bu kodu kullanarak oturumunuzu doğrulayabilirsiniz.</p>
         <p>
-          Eğer bu işlemi siz gerçekleştirmediyseniz, lütfen bizimle iletişime
-          geçin.
+          Yetkilendirilmeye çalışılan oturum bilgileri:
+        </p>
+        <table style="width: 100%; margin-top: 20px">
+          <tr>
+            <td style="padding: 5px 0">IP Adresi:</td>
+            <td style="padding: 5px 0">{{ .IP }}</td>
+          </tr>
+          <tr>
+            <td style="padding: 5px 0">Tarayıcı:</td>
+            <td style="padding: 5px 0">{{ .Browser }}</td>
+          </tr>
+          <tr>
+            <td style="padding: 5px 0">İşletim Sistemi:</td>
+            <td style="padding: 5px 0">{{ .OS }}</td>
+          </tr>
+        </table>
+        <a
+          href="https://hesabim.turistikrota.com/oturumlar/{{ .DeviceUUID }}/sonlandir"
+          style="
+            display: inline-block;
+            margin-top: 20px;
+            margin-bottom: 20px;
+            padding: 10px 20px;
+            width: 100%;
+            box-sizing: border-box;
+            text-align: center;
+            background-color: #ef4444;
+            border-radius: 5px;
+            color: #fff;
+            text-decoration: none;
+          "
+          >Şüpheli Cihazdaki Oturumu Sonlandır</a
+        >
+        <p>
+          Eğer bir sorunuz varsa, lütfen bizimle iletişime geçin.
         </p>
       </div>
     </div>
