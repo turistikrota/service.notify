@@ -3,9 +3,8 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Hesabınızı Etkinleştirin</title>
+    <title>Your Verification Code</title>
     <style>
-      /* CSS Reset */
       body,
       div,
       p,
@@ -21,14 +20,9 @@
         vertical-align: baseline;
         line-height: 1.5;
       }
-
-      /* Responsive Styles */
       @media only screen and (max-width: 600px) {
         .container {
           width: 100% !important;
-        }
-        .logo {
-          text-align: left;
         }
         .content {
           padding: 20px;
@@ -42,7 +36,6 @@
         class="content"
         style="
           padding: 40px;
-          padding-top: 20px;
           background-color: #ffffff;
           border-top: 10px solid orange;
           border-bottom-left-radius: 5px;
@@ -56,40 +49,68 @@
             style="max-width: 200px"
           />
         </div>
-        <p style="margin-top: 20px; margin-bottom: 20px">Merhaba,</p>
+        <p style="margin-top: 20px; margin-bottom: 20px">Hello,</p>
         <p>
-          Sitemize kaydolduğunuz için teşekkür ederiz. Bu sizin için harika bir
-          adım!
+          You can use the following 4-digit verification code to verify your
+          session:
         </p>
+        <h3
+          style="
+            text-align: center;
+            font-size: 32px;
+            margin: 20px 0;
+            padding: 10px;
+            background-color: #f8f8f8;
+            border-radius: 5px;
+            letter-spacing: 10px;
+          "
+        >
+          {{ .Code }}
+        </h3>
         <p>
-          Hesabınızı tamamen etkinleştirmek ve siteye erişim sağlamak için
-          aşağıdaki bağlantıya tıklayınız:
+          Session information to be authorized:
         </p>
+        <table style="width: 100%; margin-top: 20px">
+          <tr>
+            <td style="padding: 5px 0">IP Address:</td>
+            <td style="padding: 5px 0">{{ .IP }}</td>
+          </tr>
+          <tr>
+            <td style="padding: 5px 0">Browser:</td>
+            <td style="padding: 5px 0">{{ .Browser }}</td>
+          </tr>
+          <tr>
+            <td style="padding: 5px 0">Operating System:</td>
+            <td style="padding: 5px 0">{{ .OS }}</td>
+          </tr>
+        </table>
         <a
-          href="https://turistikrota.com/tr/giris/aktivasyon?code={{ .Token }}"
+          href="https://my-account.turistikrota.com/session/{{ .DeviceUUID }}/destroy"
           style="
             display: inline-block;
             margin-top: 20px;
+            margin-bottom: 20px;
             padding: 10px 20px;
-            background-color: #3397e6;
+            width: 100%;
+            box-sizing: border-box;
+            text-align: center;
+            background-color: #ef4444;
             border-radius: 5px;
             color: #fff;
             text-decoration: none;
           "
-          >Hesabımı Etkinleştir</a
+          >End Session on Suspicious Device</a
         >
-        <p style="margin-top: 20px">
-          Eğer bağlantıya tıklayamıyorsanız, aşağıdaki adresi tarayıcınıza
-          yapıştırın:
+        <p>
+          If you have any questions, please contact us.
         </p>
-        <p>https://turistikrota.com/tr/giris/aktivasyon?code={{ .Token }}</p>
       </div>
     </div>
     <div
       class="footer"
       style="text-align: center; font-size: 12px; padding: 20px"
     >
-      <p>© 2024 Turistikrota. Tüm hakları saklıdır.</p>
+      <p>© 2024 Turistikrota. All Rights Reserved.</p>
     </div>
   </body>
 </html>

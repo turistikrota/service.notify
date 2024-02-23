@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="tr">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Your Verification Code</title>
+    <title>Doğrulama Kodunuz</title>
     <style>
       body,
       div,
@@ -49,10 +49,10 @@
             style="max-width: 200px"
           />
         </div>
-        <p style="margin-top: 20px; margin-bottom: 20px">Hello,</p>
+        <p style="margin-top: 20px; margin-bottom: 20px">Merhaba,</p>
         <p>
-          You can use the following 4-digit verification code to verify your
-          account:
+          Oturumunuzu doğrulamak için aşağıdaki 4 haneli doğrulama kodunu
+          kullanabilirsiniz:
         </p>
         <h3
           style="
@@ -67,15 +67,50 @@
         >
           {{ .Code }}
         </h3>
-        <p>You can verify your account using this code.</p>
-        <p>If you have not done this, please contact us.</p>
+        <p>
+          Yetkilendirilmeye çalışılan oturum bilgileri:
+        </p>
+        <table style="width: 100%; margin-top: 20px">
+          <tr>
+            <td style="padding: 5px 0">IP Adresi:</td>
+            <td style="padding: 5px 0">{{ .IP }}</td>
+          </tr>
+          <tr>
+            <td style="padding: 5px 0">Tarayıcı:</td>
+            <td style="padding: 5px 0">{{ .Browser }}</td>
+          </tr>
+          <tr>
+            <td style="padding: 5px 0">İşletim Sistemi:</td>
+            <td style="padding: 5px 0">{{ .OS }}</td>
+          </tr>
+        </table>
+        <a
+          href="https://hesabim.turistikrota.com/oturumlar/{{ .DeviceUUID }}/sonlandir"
+          style="
+            display: inline-block;
+            margin-top: 20px;
+            margin-bottom: 20px;
+            padding: 10px 20px;
+            width: 100%;
+            box-sizing: border-box;
+            text-align: center;
+            background-color: #ef4444;
+            border-radius: 5px;
+            color: #fff;
+            text-decoration: none;
+          "
+          >Şüpheli Cihazdaki Oturumu Sonlandır</a
+        >
+        <p>
+          Eğer bir sorunuz varsa, lütfen bizimle iletişime geçin.
+        </p>
       </div>
     </div>
     <div
       class="footer"
       style="text-align: center; font-size: 12px; padding: 20px"
     >
-      <p>© 2024 Turistikrota. All Rights Reserved.</p>
+      <p>© 2024 Turistikrota. Tüm hakları saklıdır.</p>
     </div>
   </body>
 </html>
